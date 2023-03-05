@@ -1,4 +1,4 @@
-# 🏕️ Miracle_Manager
+# 🏕️ Miracle Manager
 🪴 A open source YouTube Miracle Manager Application
 >***Used Libraries***<br>
 > [PR Downloader](https://github.com/amitshekhariitbhu/PRDownloader)<br>
