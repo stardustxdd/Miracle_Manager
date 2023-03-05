@@ -58,6 +58,7 @@ public class UpdaterActivity extends AppCompatActivity {
 	private String version = "";
 	private String VersionName = "";
 	private String ntr = "";
+	private String SHA256vxb = "";
 	
 	private ScrollView vscroll1;
 	private LinearLayout linear1;
@@ -66,6 +67,8 @@ public class UpdaterActivity extends AppCompatActivity {
 	private LinearLayout linear4;
 	private LinearLayout linear12;
 	private LinearLayout linear13;
+	private LinearLayout linear20;
+	private LinearLayout linear21;
 	private ImageView imageview1;
 	private LinearLayout linear11;
 	private LinearLayout linear10;
@@ -80,11 +83,9 @@ public class UpdaterActivity extends AppCompatActivity {
 	private LinearLayout linear9;
 	private TextView textview3;
 	private TextView textview4;
-	private LinearLayout linear14;
+	private LinearLayout linear19;
 	private LinearLayout linear16;
-	private ImageView imageview2;
-	private LinearLayout linear15;
-	private TextView textview11;
+	private TextView textview12;
 	private LinearLayout linear17;
 	private LinearLayout linear18;
 	private TextView textview5;
@@ -93,6 +94,8 @@ public class UpdaterActivity extends AppCompatActivity {
 	private TextView textview8;
 	private TextView textview9;
 	private TextView textview10;
+	private ImageView imageview3;
+	private TextView textview13;
 	
 	private RequestNetwork ChekUpdate;
 	private RequestNetwork.RequestListener _ChekUpdate_request_listener;
@@ -130,6 +133,8 @@ public class UpdaterActivity extends AppCompatActivity {
 		linear4 = findViewById(R.id.linear4);
 		linear12 = findViewById(R.id.linear12);
 		linear13 = findViewById(R.id.linear13);
+		linear20 = findViewById(R.id.linear20);
+		linear21 = findViewById(R.id.linear21);
 		imageview1 = findViewById(R.id.imageview1);
 		linear11 = findViewById(R.id.linear11);
 		linear10 = findViewById(R.id.linear10);
@@ -144,11 +149,9 @@ public class UpdaterActivity extends AppCompatActivity {
 		linear9 = findViewById(R.id.linear9);
 		textview3 = findViewById(R.id.textview3);
 		textview4 = findViewById(R.id.textview4);
-		linear14 = findViewById(R.id.linear14);
+		linear19 = findViewById(R.id.linear19);
 		linear16 = findViewById(R.id.linear16);
-		imageview2 = findViewById(R.id.imageview2);
-		linear15 = findViewById(R.id.linear15);
-		textview11 = findViewById(R.id.textview11);
+		textview12 = findViewById(R.id.textview12);
 		linear17 = findViewById(R.id.linear17);
 		linear18 = findViewById(R.id.linear18);
 		textview5 = findViewById(R.id.textview5);
@@ -157,6 +160,8 @@ public class UpdaterActivity extends AppCompatActivity {
 		textview8 = findViewById(R.id.textview8);
 		textview9 = findViewById(R.id.textview9);
 		textview10 = findViewById(R.id.textview10);
+		imageview3 = findViewById(R.id.imageview3);
+		textview13 = findViewById(R.id.textview13);
 		ChekUpdate = new RequestNetwork(this);
 		net = new RequestNetwork(this);
 		
@@ -239,7 +244,6 @@ public class UpdaterActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		_getAPPinfo();
 		_status_bar_color("#a1d1ff", "#a1d1ff");
 		UpdateApi = "https://dl.dropboxusercontent.com/s/faiirot9icabaat/update.json";
 		VersionCode = Double.parseDouble(getIntent().getStringExtra("ManagerVersion"));
@@ -247,6 +251,7 @@ public class UpdaterActivity extends AppCompatActivity {
 		linear8.setVisibility(View.VISIBLE);
 		linear11.setVisibility(View.GONE);
 		progressbar2.setVisibility(View.GONE);
+		linear21.setVisibility(View.GONE);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 			Window w =UpdaterActivity.this.getWindow();
 			w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -256,6 +261,8 @@ public class UpdaterActivity extends AppCompatActivity {
 		linear2.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear4.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear13.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		linear21.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		_getAPPinfo();
 		_RippleEffect(linear8, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear9, 50, 00, "#0A58CA", true);
 		ChekUpdate.startRequestNetwork(RequestNetworkController.GET, UpdateApi, "a", _ChekUpdate_request_listener);
@@ -2134,9 +2141,22 @@ public class UpdaterActivity extends AppCompatActivity {
 		}catch(Exception e){
 			 
 		}
+		SHA256vxb = apk.getSHA256();
 		VersionName = apk.getVersionName();
-		imageview2.setImageDrawable(apk.getIcon());
+		//imageview2.setImageDrawable(apk.getIcon());
 		textview9.setText(VersionName);
+		if (SHA256vxb.equals("301a91e1fb5ec0d3462d6f6134b9f2d9b6dfed4d998c24ee04529c3dd7553c67".toUpperCase())) {
+			linear21.setVisibility(View.VISIBLE);
+			imageview3.setImageResource(R.drawable.ic_secure);
+			textview13.setTextColor(0xFF558B2F);
+			textview13.setText("You Are Using Office Application !!");
+		}
+		else {
+			linear21.setVisibility(View.VISIBLE);
+			imageview3.setImageResource(R.drawable.ic_inscure);
+			textview13.setTextColor(0xFFC62828);
+			textview13.setText("You Are Not Using Office Application !!");
+		}
 	}
 	
 	

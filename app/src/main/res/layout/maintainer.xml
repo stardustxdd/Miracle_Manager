@@ -80,7 +80,7 @@
 						android:paddingLeft="8dp"
 						android:paddingRight="8dp"
 						android:paddingBottom="2dp"
-						android:text="Himanshu Saini ( \@DudeCool26 )"
+						android:text="Himanshu Saini"
 						android:textSize="25sp"
 						android:textStyle="bold"
 						android:textColor="#2962FF" />
@@ -176,7 +176,9 @@
 					android:id="@+id/linear15"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
+					android:paddingLeft="4dp"
+					android:paddingTop="4dp"
+					android:paddingRight="4dp"
 					android:gravity="center_horizontal|center_vertical"
 					android:orientation="horizontal">
 					<LinearLayout

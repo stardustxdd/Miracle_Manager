@@ -132,8 +132,11 @@ public class ManagerActivity extends AppCompatActivity {
 	private TextView textview9;
 	private TextView textview12;
 	private TextView textview36;
+	private LinearLayout linear78;
+	private LinearLayout linear77;
 	private LinearLayout linear24;
 	private TextView textview21;
+	private ImageView imageview11;
 	private LinearLayout linear8;
 	private LinearLayout linear10;
 	private LinearLayout linear73;
@@ -150,8 +153,11 @@ public class ManagerActivity extends AppCompatActivity {
 	private TextView textview13;
 	private TextView textview14;
 	private TextView textview15;
+	private LinearLayout linear80;
+	private LinearLayout linear79;
 	private LinearLayout linear26;
 	private TextView textview22;
+	private ImageView imageview12;
 	private LinearLayout linear37;
 	private LinearLayout linear38;
 	private LinearLayout linear39;
@@ -267,8 +273,11 @@ public class ManagerActivity extends AppCompatActivity {
 		textview9 = findViewById(R.id.textview9);
 		textview12 = findViewById(R.id.textview12);
 		textview36 = findViewById(R.id.textview36);
+		linear78 = findViewById(R.id.linear78);
+		linear77 = findViewById(R.id.linear77);
 		linear24 = findViewById(R.id.linear24);
 		textview21 = findViewById(R.id.textview21);
+		imageview11 = findViewById(R.id.imageview11);
 		linear8 = findViewById(R.id.linear8);
 		linear10 = findViewById(R.id.linear10);
 		linear73 = findViewById(R.id.linear73);
@@ -285,8 +294,11 @@ public class ManagerActivity extends AppCompatActivity {
 		textview13 = findViewById(R.id.textview13);
 		textview14 = findViewById(R.id.textview14);
 		textview15 = findViewById(R.id.textview15);
+		linear80 = findViewById(R.id.linear80);
+		linear79 = findViewById(R.id.linear79);
 		linear26 = findViewById(R.id.linear26);
 		textview22 = findViewById(R.id.textview22);
+		imageview12 = findViewById(R.id.imageview12);
 		linear37 = findViewById(R.id.linear37);
 		linear38 = findViewById(R.id.linear38);
 		linear39 = findViewById(R.id.linear39);
@@ -433,7 +445,7 @@ public class ManagerActivity extends AppCompatActivity {
 							MaterialAlertDialogBuilder updt = new MaterialAlertDialogBuilder(ManagerActivity.this);
 							updt.setTitle("An update is available");
 							updt.setMessage("A new version of Miracle Manager is published please update your application. 😉");
-							updt.setIcon(R.drawable.ic_miracle_);
+							updt.setIcon(R.drawable.ic_arrow_update);
 							updt.setPositiveButton("Update", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface _dialog, int _which) {
@@ -528,7 +540,6 @@ public class ManagerActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		_Apk_init();
 		progressbar3.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
 		_status_bar_color("#a1d1ff", "#a1d1ff");
 		set_theme = 1;
@@ -544,6 +555,9 @@ public class ManagerActivity extends AppCompatActivity {
 		linear67.setVisibility(View.GONE);
 		linear76.setVisibility(View.GONE);
 		linear31.setVisibility(View.GONE);
+		linear78.setVisibility(View.INVISIBLE);
+		linear80.setVisibility(View.INVISIBLE);
+		_Apk_init();
 		if (usr.getString("UserId", "").equals("")) {
 			usr.edit().putString("UserId", "Unknown User").commit();
 			textview33.setText(usr.getString("UserId", ""));
@@ -852,6 +866,8 @@ public class ManagerActivity extends AppCompatActivity {
 		_RippleEffect(linear44, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear52, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear48, 50, 00, "#0A58CA", false);
+		_RippleEffect(linear78, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear80, 50, 00, "#0A58CA", true);
 		progressbar2.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
 	}
 	
@@ -2633,6 +2649,7 @@ public class ManagerActivity extends AppCompatActivity {
 		else {
 			if (Sha256Ytm.equals("301a91e1fb5ec0d3462d6f6134b9f2d9b6dfed4d998c24ee04529c3dd7553c67".toUpperCase())) {
 				textview9.setText(VersionCodeYtm);
+				linear78.setVisibility(View.VISIBLE);
 				imageview2.setImageDrawable(apk.getIcon());
 			}
 			else {
@@ -2650,6 +2667,7 @@ public class ManagerActivity extends AppCompatActivity {
 			textview14.setText("Vanced MicroG Not Installed !!");
 		}
 		else {
+			linear80.setVisibility(View.VISIBLE);
 			textview14.setText(MgVersion);
 		}
 		try{
