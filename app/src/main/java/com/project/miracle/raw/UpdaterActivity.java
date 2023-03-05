@@ -26,6 +26,7 @@ import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,11 +55,17 @@ public class UpdaterActivity extends AppCompatActivity {
 	private double VersionCode = 0;
 	private HashMap<String, Object> UpdateResponce = new HashMap<>();
 	private String UpdateLinkDn = "";
+	private String version = "";
+	private String VersionName = "";
+	private String ntr = "";
 	
+	private ScrollView vscroll1;
 	private LinearLayout linear1;
 	private LinearLayout linear2;
 	private LinearLayout linear3;
 	private LinearLayout linear4;
+	private LinearLayout linear12;
+	private LinearLayout linear13;
 	private ImageView imageview1;
 	private LinearLayout linear11;
 	private LinearLayout linear10;
@@ -73,6 +80,19 @@ public class UpdaterActivity extends AppCompatActivity {
 	private LinearLayout linear9;
 	private TextView textview3;
 	private TextView textview4;
+	private LinearLayout linear14;
+	private LinearLayout linear16;
+	private ImageView imageview2;
+	private LinearLayout linear15;
+	private TextView textview11;
+	private LinearLayout linear17;
+	private LinearLayout linear18;
+	private TextView textview5;
+	private TextView textview6;
+	private TextView textview7;
+	private TextView textview8;
+	private TextView textview9;
+	private TextView textview10;
 	
 	private RequestNetwork ChekUpdate;
 	private RequestNetwork.RequestListener _ChekUpdate_request_listener;
@@ -103,10 +123,13 @@ public class UpdaterActivity extends AppCompatActivity {
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
+		vscroll1 = findViewById(R.id.vscroll1);
 		linear1 = findViewById(R.id.linear1);
 		linear2 = findViewById(R.id.linear2);
 		linear3 = findViewById(R.id.linear3);
 		linear4 = findViewById(R.id.linear4);
+		linear12 = findViewById(R.id.linear12);
+		linear13 = findViewById(R.id.linear13);
 		imageview1 = findViewById(R.id.imageview1);
 		linear11 = findViewById(R.id.linear11);
 		linear10 = findViewById(R.id.linear10);
@@ -121,6 +144,19 @@ public class UpdaterActivity extends AppCompatActivity {
 		linear9 = findViewById(R.id.linear9);
 		textview3 = findViewById(R.id.textview3);
 		textview4 = findViewById(R.id.textview4);
+		linear14 = findViewById(R.id.linear14);
+		linear16 = findViewById(R.id.linear16);
+		imageview2 = findViewById(R.id.imageview2);
+		linear15 = findViewById(R.id.linear15);
+		textview11 = findViewById(R.id.textview11);
+		linear17 = findViewById(R.id.linear17);
+		linear18 = findViewById(R.id.linear18);
+		textview5 = findViewById(R.id.textview5);
+		textview6 = findViewById(R.id.textview6);
+		textview7 = findViewById(R.id.textview7);
+		textview8 = findViewById(R.id.textview8);
+		textview9 = findViewById(R.id.textview9);
+		textview10 = findViewById(R.id.textview10);
 		ChekUpdate = new RequestNetwork(this);
 		net = new RequestNetwork(this);
 		
@@ -168,6 +204,8 @@ public class UpdaterActivity extends AppCompatActivity {
 							linear8.setVisibility(View.GONE);
 							linear9.setVisibility(View.VISIBLE);
 						}
+						textview8.setText(UpdateResponce.get("Manager_Latest_Version").toString());
+						textview10.setText(UpdateResponce.get("Manager_Latest_Version_Release_Date").toString().concat(", ".concat(UpdateResponce.get("Manager_Latest_Version_Release_Time").toString())));
 					}catch(Exception e){
 						TastyToast.makeText(getApplicationContext(), "Something went wrong !!", TastyToast.LENGTH_LONG, TastyToast.ERROR);
 					}
@@ -201,6 +239,7 @@ public class UpdaterActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
+		_getAPPinfo();
 		_status_bar_color("#a1d1ff", "#a1d1ff");
 		UpdateApi = "https://dl.dropboxusercontent.com/s/faiirot9icabaat/update.json";
 		VersionCode = Double.parseDouble(getIntent().getStringExtra("ManagerVersion"));
@@ -216,6 +255,7 @@ public class UpdaterActivity extends AppCompatActivity {
 		lottie1.setAnimation("136912-update-app.json");
 		linear2.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear4.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		linear13.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		_RippleEffect(linear8, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear9, 50, 00, "#0A58CA", true);
 		ChekUpdate.startRequestNetwork(RequestNetworkController.GET, UpdateApi, "a", _ChekUpdate_request_listener);
@@ -2082,6 +2122,21 @@ public class UpdaterActivity extends AppCompatActivity {
 			   Window w = this.getWindow(); w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 			   w.setStatusBarColor(Color.parseColor(_colour1)); w.setNavigationBarColor(Color.parseColor(_colour2));
 		}
+	}
+	
+	
+	public void _getAPPinfo() {
+		ntr = "com.project.miracle.raw";
+		
+		ApkUtils apk = new ApkUtils(UpdaterActivity.this);
+		try{
+			apk.setPackageName(ntr);;
+		}catch(Exception e){
+			 
+		}
+		VersionName = apk.getVersionName();
+		imageview2.setImageDrawable(apk.getIcon());
+		textview9.setText(VersionName);
 	}
 	
 	
