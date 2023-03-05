@@ -168,7 +168,7 @@ public class MaintainerActivity extends AppCompatActivity {
 		linear3.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear11.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear13.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
-		lottie1.setAnimation("maintainence-plan.json");
+		lottie1.setAnimation("Animation/maintainence-plan.json");
 		_RippleEffect(linear6, 50, 00, "#2962ff", true);
 		_RippleEffect(linear8, 50, 00, "#2962ff", true);
 		_RippleEffect(linear16, 50, 00, "#2962ff", true);
