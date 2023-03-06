@@ -3,6 +3,8 @@ package com.project.miracle.raw;
 import android.animation.*;
 import android.app.*;
 import android.content.*;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.res.*;
 import android.graphics.*;
@@ -153,7 +155,8 @@ public class MaintainerActivity extends AppCompatActivity {
 		linear16.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				SketchwareUtil.showMessage(getApplicationContext(), "Coming Soon ...");
+				((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", "himanshusaini81861@paytm"));
+				SketchwareUtil.showMessage(getApplicationContext(), "Upi Id Copied To Clipboard");
 			}
 		});
 	}
