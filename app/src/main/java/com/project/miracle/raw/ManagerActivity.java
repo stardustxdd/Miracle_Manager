@@ -76,6 +76,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private String YtmFinalSaveName = "";
 	private double isDownloading = 0;
 	private String DownloadMG = "";
+	private String packageName = "";
+	private String mg_packageName = "";
 	
 	private ScrollView vscroll1;
 	private LinearLayout linear1;
@@ -135,8 +137,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear78;
 	private LinearLayout linear77;
 	private LinearLayout linear24;
-	private TextView textview21;
 	private ImageView imageview11;
+	private TextView textview21;
 	private LinearLayout linear8;
 	private LinearLayout linear10;
 	private LinearLayout linear73;
@@ -156,8 +158,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear80;
 	private LinearLayout linear79;
 	private LinearLayout linear26;
-	private TextView textview22;
 	private ImageView imageview12;
+	private TextView textview22;
 	private LinearLayout linear37;
 	private LinearLayout linear38;
 	private LinearLayout linear39;
@@ -194,6 +196,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private TimerTask hide_str_loc_tim;
 	private AlertDialog.Builder Sure;
 	private Intent refreshact = new Intent();
+	private Intent miracle = new Intent();
+	private Intent microg = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -276,8 +280,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear78 = findViewById(R.id.linear78);
 		linear77 = findViewById(R.id.linear77);
 		linear24 = findViewById(R.id.linear24);
-		textview21 = findViewById(R.id.textview21);
 		imageview11 = findViewById(R.id.imageview11);
+		textview21 = findViewById(R.id.textview21);
 		linear8 = findViewById(R.id.linear8);
 		linear10 = findViewById(R.id.linear10);
 		linear73 = findViewById(R.id.linear73);
@@ -297,8 +301,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear80 = findViewById(R.id.linear80);
 		linear79 = findViewById(R.id.linear79);
 		linear26 = findViewById(R.id.linear26);
-		textview22 = findViewById(R.id.textview22);
 		imageview12 = findViewById(R.id.imageview12);
+		textview22 = findViewById(R.id.textview22);
 		linear37 = findViewById(R.id.linear37);
 		linear38 = findViewById(R.id.linear38);
 		linear39 = findViewById(R.id.linear39);
@@ -387,6 +391,66 @@ public class ManagerActivity extends AppCompatActivity {
 				linear51.setVisibility(View.GONE);
 				usr.edit().putString("UserId", edittext1.getText().toString()).commit();
 				textview33.setText(usr.getString("UserId", ""));
+			}
+		});
+		
+		linear78.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				packageName = package_name;
+				try {
+					    Intent miracle = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    miracle.setData(Uri.parse("package:" + packageName));
+					    startActivity(miracle);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
+		imageview11.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				packageName = package_name;
+				try {
+					    Intent miracle = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    miracle.setData(Uri.parse("package:" + packageName));
+					    startActivity(miracle);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
+		linear80.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				mg_packageName = mg_package_name;
+				try {
+					    Intent microg = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    microg.setData(Uri.parse("package:" + mg_packageName));
+					    startActivity(microg);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
+		imageview12.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				mg_packageName = mg_package_name;
+				try {
+					    Intent microg = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    microg.setData(Uri.parse("package:" + mg_packageName));
+					    startActivity(microg);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
 			}
 		});
 		

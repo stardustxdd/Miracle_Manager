@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 	private String c = "";
 	private String d = "";
 	private String PermissionString = "";
+	private String packageName = "";
 	
 	private LinearLayout linear1;
 	private LinearLayout linear2;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 	private ObjectAnimator ab = new ObjectAnimator();
 	private ObjectAnimator bc = new ObjectAnimator();
 	private ObjectAnimator cd = new ObjectAnimator();
+	private Intent miracle = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -100,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
 		d = ".raw";
 		if (Build.VERSION.SDK_INT >= 23) {
 						if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == android.content.pm.PackageManager.PERMISSION_DENIED) {
-								SketchwareUtil.showMessage(getApplicationContext(), "Please Allow Storage Permission To Continue !!");
-				requestPermissions(new String[] {android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+								requestPermissions(new String[] {android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+				SketchwareUtil.showMessage(getApplicationContext(), "Please Allow Storage Permission To Continue !!");
 						}
 						else {
 				bd.setTarget(linear2);

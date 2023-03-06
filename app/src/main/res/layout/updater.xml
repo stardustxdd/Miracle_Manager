@@ -152,6 +152,30 @@
 							android:textStyle="bold"
 							android:textColor="#FFFFFF" />
 					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/linear22"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="horizontal" />
+					<LinearLayout
+						android:id="@+id/linear23"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:background="#2962FF"
+						android:gravity="center_horizontal|center_vertical"
+						android:orientation="horizontal">
+						<TextView
+							android:id="@+id/textview14"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="4dp"
+							android:text="Visit GitHub"
+							android:textSize="12sp"
+							android:textStyle="bold"
+							android:textColor="#FFFFFF" />
+					</LinearLayout>
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout

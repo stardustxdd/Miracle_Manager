@@ -81,8 +81,11 @@ public class UpdaterActivity extends AppCompatActivity {
 	private ProgressBar progressbar2;
 	private LinearLayout linear8;
 	private LinearLayout linear9;
+	private LinearLayout linear22;
+	private LinearLayout linear23;
 	private TextView textview3;
 	private TextView textview4;
+	private TextView textview14;
 	private LinearLayout linear19;
 	private LinearLayout linear16;
 	private TextView textview12;
@@ -102,6 +105,7 @@ public class UpdaterActivity extends AppCompatActivity {
 	private RequestNetwork net;
 	private RequestNetwork.RequestListener _net_request_listener;
 	private Intent intent = new Intent();
+	private Intent github = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -147,8 +151,11 @@ public class UpdaterActivity extends AppCompatActivity {
 		progressbar2 = findViewById(R.id.progressbar2);
 		linear8 = findViewById(R.id.linear8);
 		linear9 = findViewById(R.id.linear9);
+		linear22 = findViewById(R.id.linear22);
+		linear23 = findViewById(R.id.linear23);
 		textview3 = findViewById(R.id.textview3);
 		textview4 = findViewById(R.id.textview4);
+		textview14 = findViewById(R.id.textview14);
 		linear19 = findViewById(R.id.linear19);
 		linear16 = findViewById(R.id.linear16);
 		textview12 = findViewById(R.id.textview12);
@@ -185,6 +192,15 @@ public class UpdaterActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View _view) {
 				
+			}
+		});
+		
+		linear23.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				github.setAction(Intent.ACTION_VIEW);
+				github.setData(Uri.parse("https://github.com/DudeCool26/Miracle_Manager.git"));
+				startActivity(github);
 			}
 		});
 		
@@ -265,6 +281,7 @@ public class UpdaterActivity extends AppCompatActivity {
 		_getAPPinfo();
 		_RippleEffect(linear8, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear9, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear23, 50, 00, "#0A58CA", true);
 		ChekUpdate.startRequestNetwork(RequestNetworkController.GET, UpdateApi, "a", _ChekUpdate_request_listener);
 		FileUtil.writeFile("t", "t");
 		PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
