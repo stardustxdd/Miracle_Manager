@@ -9,6 +9,6 @@
 >This source code is directly exported from Sketchware so I am not responsible for any error in Android Studio.
 
 >**Note**<br>
-> I am used Dropbox as response API
+> I used Dropbox as response API
 > Current Api 👇
 > [https://dl.dropboxusercontent.com/s/lfq51795uhlg5dq/manager.json](https://dl.dropboxusercontent.com/s/lfq51795uhlg5dq/manager.json)
