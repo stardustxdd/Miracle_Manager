@@ -54,7 +54,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.*;
 import org.json.*;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import java.lang.reflect.*;
 
 public class ManagerActivity extends AppCompatActivity {
 	
@@ -139,6 +140,35 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear24;
 	private ImageView imageview11;
 	private TextView textview21;
+	private LinearLayout linear81;
+	private LinearLayout linear90;
+	private LinearLayout linear89;
+	private LinearLayout linear91;
+	private LinearLayout linear83;
+	private LinearLayout linear82;
+	private LinearLayout linear84;
+	private LinearLayout linear87;
+	private LinearLayout linear93;
+	private LinearLayout linear92;
+	private ImageView imageview13;
+	private LinearLayout linear85;
+	private TextView textview43;
+	private TextView textview44;
+	private LinearLayout linear86;
+	private LinearLayout linear88;
+	private TextView textview45;
+	private TextView textview46;
+	private TextView textview47;
+	private TextView textview48;
+	private TextView textview49;
+	private TextView textview50;
+	private TextView textview51;
+	private TextView textview52;
+	private LinearLayout linear94;
+	private LinearLayout linear95;
+	private LinearLayout linear96;
+	private ImageView imageview14;
+	private TextView textview53;
 	private LinearLayout linear8;
 	private LinearLayout linear10;
 	private LinearLayout linear73;
@@ -282,6 +312,35 @@ public class ManagerActivity extends AppCompatActivity {
 		linear24 = findViewById(R.id.linear24);
 		imageview11 = findViewById(R.id.imageview11);
 		textview21 = findViewById(R.id.textview21);
+		linear81 = findViewById(R.id.linear81);
+		linear90 = findViewById(R.id.linear90);
+		linear89 = findViewById(R.id.linear89);
+		linear91 = findViewById(R.id.linear91);
+		linear83 = findViewById(R.id.linear83);
+		linear82 = findViewById(R.id.linear82);
+		linear84 = findViewById(R.id.linear84);
+		linear87 = findViewById(R.id.linear87);
+		linear93 = findViewById(R.id.linear93);
+		linear92 = findViewById(R.id.linear92);
+		imageview13 = findViewById(R.id.imageview13);
+		linear85 = findViewById(R.id.linear85);
+		textview43 = findViewById(R.id.textview43);
+		textview44 = findViewById(R.id.textview44);
+		linear86 = findViewById(R.id.linear86);
+		linear88 = findViewById(R.id.linear88);
+		textview45 = findViewById(R.id.textview45);
+		textview46 = findViewById(R.id.textview46);
+		textview47 = findViewById(R.id.textview47);
+		textview48 = findViewById(R.id.textview48);
+		textview49 = findViewById(R.id.textview49);
+		textview50 = findViewById(R.id.textview50);
+		textview51 = findViewById(R.id.textview51);
+		textview52 = findViewById(R.id.textview52);
+		linear94 = findViewById(R.id.linear94);
+		linear95 = findViewById(R.id.linear95);
+		linear96 = findViewById(R.id.linear96);
+		imageview14 = findViewById(R.id.imageview14);
+		textview53 = findViewById(R.id.textview53);
 		linear8 = findViewById(R.id.linear8);
 		linear10 = findViewById(R.id.linear10);
 		linear73 = findViewById(R.id.linear73);
@@ -906,6 +965,14 @@ public class ManagerActivity extends AppCompatActivity {
 	
 	
 	public void _light_theme() {
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				 
+		}
+		else {
+				 
+		}
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+		getWindow().setStatusBarColor(0xFFFFFFFF);
 		linear55.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b, int c, int d) { this.setCornerRadius(a); this.setStroke(b, c); this.setColor(d); return this; } }.getIns((int)50, (int)2, 0xFF000000, Color.TRANSPARENT));
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 			Window w =ManagerActivity.this.getWindow();
@@ -923,6 +990,7 @@ public class ManagerActivity extends AppCompatActivity {
 		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFA1D1FF));
 		linear66.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		linear82.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		_RippleEffect(linear24, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear26, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear40, 50, 00, "#0A58CA", true);
@@ -932,6 +1000,8 @@ public class ManagerActivity extends AppCompatActivity {
 		_RippleEffect(linear48, 50, 00, "#0A58CA", false);
 		_RippleEffect(linear78, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear80, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear96, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear94, 50, 00, "#0A58CA", true);
 		progressbar2.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
 	}
 	
@@ -2740,6 +2810,47 @@ public class ManagerActivity extends AppCompatActivity {
 			SketchwareUtil.showMessage(getApplicationContext(), "Package Manager Error !!");
 		}
 		ManagerVersionCode = apk.getVersionCode();
+	}
+	
+	
+	public void _MaterialYou() {
+		// Currently Useless
+		_function();
+		linear2.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear4.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear7.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear32.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear49.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear63.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear32.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		linear66.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
+		linear24.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		linear52.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		linear26.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		linear78.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		linear80.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
+		textview33.setTextColor(getColor("system_accent1_700"));
+		textview8.setTextColor(getColor("system_accent1_700"));
+		textview9.setTextColor(getColor("system_accent1_700"));
+		textview12.setTextColor(getColor("system_accent1_700"));
+		textview36.setTextColor(getColor("system_accent1_700"));
+		textview13.setTextColor(getColor("system_accent1_700"));
+		textview14.setTextColor(getColor("system_accent1_700"));
+		textview15.setTextColor(getColor("system_accent1_700"));
+		textview40.setTextColor(getColor("system_accent1_700"));
+		linear1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)00, getColor("system_accent2_10")));
+		vscroll1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)00, getColor("system_accent2_10")));
+		linear1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)00, getColor("system_neutral2_10")));
+			vscroll1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)00, getColor("system_neutral2_10")));
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =ManagerActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(getColor("system_neutral2_10"));
+			}
+		_function();
+		Window w = this.getWindow(); w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setNavigationBarColor(getColor("system_neutral2_10"));
 	}
 	
 	

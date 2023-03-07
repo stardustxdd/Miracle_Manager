@@ -178,7 +178,7 @@
 							android:padding="8dp"
 							android:background="#A1D1FF"
 							android:textSize="12sp"
-							android:textColor="#000000"
+							android:textColor="#FFFFFF"
 							android:hint="User Name"
 							android:textColorHint="#000000"
 							android:singleLine="true" />
@@ -357,8 +357,7 @@
 					android:id="@+id/linear71"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:paddingRight="4dp"
-					android:paddingBottom="4dp"
+					android:padding="4dp"
 					android:gravity="right"
 					android:orientation="horizontal">
 					<LinearLayout
@@ -406,8 +405,231 @@
 				android:id="@+id/linear3"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:padding="8dp"
-				android:orientation="vertical" />
+				android:orientation="vertical">
+				<LinearLayout
+					android:id="@+id/linear81"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<LinearLayout
+						android:id="@+id/linear90"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:orientation="horizontal" />
+					<LinearLayout
+						android:id="@+id/linear89"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+						<LinearLayout
+							android:id="@+id/linear83"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+							<LinearLayout
+								android:id="@+id/linear82"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:padding="2dp"
+								android:background="#FFFFFF"
+								android:orientation="vertical">
+								<LinearLayout
+									android:id="@+id/linear84"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:padding="2dp"
+									android:orientation="vertical">
+									<LinearLayout
+										android:id="@+id/linear92"
+										android:layout_width="match_parent"
+										android:layout_height="wrap_content"
+										android:padding="4dp"
+										android:gravity="center_horizontal|center_vertical"
+										android:orientation="horizontal">
+										<ImageView
+											android:id="@+id/imageview13"
+											android:layout_width="35dp"
+											android:layout_height="35dp"
+											android:src="@drawable/ic_launcher_rvm"
+											android:scaleType="fitCenter" />
+										<LinearLayout
+											android:id="@+id/linear85"
+											android:layout_width="match_parent"
+											android:layout_height="wrap_content"
+											android:padding="4dp"
+											android:orientation="vertical">
+											<TextView
+												android:id="@+id/textview43"
+												android:layout_width="wrap_content"
+												android:layout_height="wrap_content"
+												android:paddingLeft="2dp"
+												android:paddingTop="2dp"
+												android:paddingRight="2dp"
+												android:text="ReVanced Music"
+												android:textSize="16sp"
+												android:textStyle="bold"
+												android:textColor="#000000" />
+											<TextView
+												android:id="@+id/textview44"
+												android:layout_width="wrap_content"
+												android:layout_height="wrap_content"
+												android:paddingLeft="2dp"
+												android:paddingRight="2dp"
+												android:paddingBottom="2dp"
+												android:text="Enjoy Ad-Free Music ..."
+												android:textSize="12sp"
+												android:textColor="#000000" />
+										</LinearLayout>
+									</LinearLayout>
+								</LinearLayout>
+								<LinearLayout
+									android:id="@+id/linear87"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:padding="2dp"
+									android:orientation="horizontal">
+									<LinearLayout
+										android:id="@+id/linear86"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:padding="2dp"
+										android:orientation="vertical">
+										<TextView
+											android:id="@+id/textview45"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Latest Version"
+											android:textSize="12sp"
+											android:textStyle="bold"
+											android:textColor="#000000" />
+										<TextView
+											android:id="@+id/textview46"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Installed Version"
+											android:textSize="12sp"
+											android:textStyle="bold"
+											android:textColor="#000000" />
+										<TextView
+											android:id="@+id/textview47"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Updated On"
+											android:textSize="12sp"
+											android:textStyle="bold"
+											android:textColor="#000000" />
+										<TextView
+											android:id="@+id/textview48"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Latest Name"
+											android:textSize="12sp"
+											android:textStyle="bold"
+											android:textColor="#000000" />
+									</LinearLayout>
+									<LinearLayout
+										android:id="@+id/linear88"
+										android:layout_width="match_parent"
+										android:layout_height="wrap_content"
+										android:padding="2dp"
+										android:orientation="vertical">
+										<TextView
+											android:id="@+id/textview49"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Loading..."
+											android:textSize="12sp"
+											android:textColor="#2962FF" />
+										<TextView
+											android:id="@+id/textview50"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Loading..."
+											android:textSize="12sp"
+											android:textColor="#2962FF" />
+										<TextView
+											android:id="@+id/textview51"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Loading..."
+											android:textSize="12sp"
+											android:textColor="#2962FF" />
+										<TextView
+											android:id="@+id/textview52"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="1dp"
+											android:text="Loading..."
+											android:textSize="12sp"
+											android:textColor="#2962FF" />
+									</LinearLayout>
+								</LinearLayout>
+								<LinearLayout
+									android:id="@+id/linear93"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:padding="4dp"
+									android:gravity="right"
+									android:orientation="horizontal">
+									<LinearLayout
+										android:id="@+id/linear94"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:padding="4dp"
+										android:background="#0A58CA"
+										android:gravity="center_horizontal|center_vertical"
+										android:orientation="horizontal">
+										<ImageView
+											android:id="@+id/imageview14"
+											android:layout_width="20dp"
+											android:layout_height="20dp"
+											android:src="@drawable/ic_info_white"
+											android:scaleType="fitCenter" />
+									</LinearLayout>
+									<LinearLayout
+										android:id="@+id/linear95"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:padding="2dp"
+										android:orientation="horizontal" />
+									<LinearLayout
+										android:id="@+id/linear96"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:padding="4dp"
+										android:background="#0A58CA"
+										android:gravity="center_horizontal|center_vertical"
+										android:orientation="horizontal">
+										<TextView
+											android:id="@+id/textview53"
+											android:layout_width="wrap_content"
+											android:layout_height="wrap_content"
+											android:padding="4dp"
+											android:text="Download ReVanced Music"
+											android:textSize="12sp"
+											android:textStyle="bold"
+											android:textColor="#FFFFFF" />
+									</LinearLayout>
+								</LinearLayout>
+							</LinearLayout>
+						</LinearLayout>
+					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/linear91"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:orientation="horizontal" />
+				</LinearLayout>
+			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/linear7"
 				android:layout_width="match_parent"
@@ -540,8 +762,7 @@
 					android:id="@+id/linear73"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:paddingRight="4dp"
-					android:paddingBottom="4dp"
+					android:padding="4dp"
 					android:gravity="right"
 					android:orientation="horizontal">
 					<LinearLayout
