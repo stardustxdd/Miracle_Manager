@@ -79,6 +79,12 @@ public class ManagerActivity extends AppCompatActivity {
 	private String DownloadMG = "";
 	private String packageName = "";
 	private String mg_packageName = "";
+	private String Sha256Rvm = "";
+	private String VersionCodeRvm = "";
+	private String rvm_package_name = "";
+	private String DownloadRVM = "";
+	private String RVM_Final_Save_Name = "";
+	private String rvm_packageName = "";
 	
 	private ScrollView vscroll1;
 	private LinearLayout linear1;
@@ -109,6 +115,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear65;
 	private LinearLayout linear74;
 	private LinearLayout linear75;
+	private LinearLayout linear97;
+	private LinearLayout linear98;
 	private ProgressBar progressbar3;
 	private TextView textview32;
 	private TextView textview33;
@@ -228,6 +236,7 @@ public class ManagerActivity extends AppCompatActivity {
 	private Intent refreshact = new Intent();
 	private Intent miracle = new Intent();
 	private Intent microg = new Intent();
+	private Intent rvm = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -281,6 +290,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear65 = findViewById(R.id.linear65);
 		linear74 = findViewById(R.id.linear74);
 		linear75 = findViewById(R.id.linear75);
+		linear97 = findViewById(R.id.linear97);
+		linear98 = findViewById(R.id.linear98);
 		progressbar3 = findViewById(R.id.progressbar3);
 		textview32 = findViewById(R.id.textview32);
 		textview33 = findViewById(R.id.textview33);
@@ -483,6 +494,21 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		});
 		
+		linear94.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				rvm_packageName = "app.rvx.android.apps.youtube.music";
+				try {
+					    Intent rvm = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    microg.setData(Uri.parse("package:" + rvm_packageName));
+					    startActivity(rvm);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
 		linear80.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -533,6 +559,7 @@ public class ManagerActivity extends AppCompatActivity {
 				linear24.setVisibility(View.VISIBLE);
 				linear26.setVisibility(View.VISIBLE);
 				linear20.setVisibility(View.VISIBLE);
+				linear96.setVisibility(View.VISIBLE);
 				linear32.setVisibility(View.GONE);
 				PRDownloader.cancel(downloadId);
 			}
@@ -552,79 +579,7 @@ public class ManagerActivity extends AppCompatActivity {
 				} catch (Exception e) {
 					SketchwareUtil.showMessage(getApplicationContext(), "Unable to load data from server !!");
 				}
-				if (!response_data_map.isEmpty()) {
-					try{
-						textview8.setText(response_data_map.get("YTM_Latest_Version").toString());
-						textview12.setText(response_data_map.get("YTM_Latest_Release_Date").toString().concat(" , ".concat(response_data_map.get("YTM_Latest_Release_Time").toString())));
-						textview36.setText(response_data_map.get("YTM_Latest_CodeName").toString());
-						textview13.setText(response_data_map.get("MG_Latest_Version").toString());
-						textview15.setText(response_data_map.get("MG_Latest_Release_Date").toString().concat(" , ".concat(response_data_map.get("MG_Latest_Release_Time").toString())));
-						update = Double.parseDouble(response_data_map.get("Manager_Latest_Version_Code").toString());
-						DownloadYTMCustIcon = response_data_map.get("YTM_Latest_Download_Link").toString();
-						DownloadMG = response_data_map.get("MG_Latest_Download_Link").toString();
-						if (update > Double.parseDouble(ManagerVersionCode)) {
-							linear55.setVisibility(View.VISIBLE);
-							imageview9.setVisibility(View.GONE);
-							MaterialAlertDialogBuilder updt = new MaterialAlertDialogBuilder(ManagerActivity.this);
-							updt.setTitle("An update is available");
-							updt.setMessage("A new version of Miracle Manager is published please update your application. 😉");
-							updt.setIcon(R.drawable.ic_arrow_update);
-							updt.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface _dialog, int _which) {
-									intent.setAction(Intent.ACTION_VIEW);
-									intent.setClass(getApplicationContext(), UpdaterActivity.class);
-									intent.putExtra("ManagerVersion", ManagerVersionCode);
-									startActivity(intent);
-								}
-							});
-							updt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface _dialog, int _which) {
-									finish();
-								}
-							});
-							updt.setCancelable(false);
-							updt.create().show();
-						}
-						if (response_data_map.get("Show_Download_Box").toString().equals("true")) {
-							linear71.setVisibility(View.VISIBLE);
-							linear73.setVisibility(View.VISIBLE);
-						}
-						if (response_data_map.get("Custom_Greeting_Message_Bool").toString().equals("true")) {
-							textview32.setText(response_data_map.get("Custom_Greeting_Message").toString());
-						}
-						if (!(VersionCodeYtm.equals("null") && MgVersion.equals("null"))) {
-							if (!VersionCodeYtm.equals(response_data_map.get("YTM_Latest_Version").toString()) && !MgVersion.equals(response_data_map.get("MG_Latest_Version").toString())) {
-								linear67.setVisibility(View.VISIBLE);
-								linear76.setVisibility(View.VISIBLE);
-								textview42.setText("Please Update YouTube Miracle & Vanced MicroG !!");
-								textview21.setText("Update YouTube Miracle");
-								textview22.setText("Update Vanced MicroG");
-							}
-						}
-						if (!VersionCodeYtm.equals("null")) {
-							if (!VersionCodeYtm.equals(response_data_map.get("YTM_Latest_Version").toString())) {
-								linear67.setVisibility(View.VISIBLE);
-								linear76.setVisibility(View.VISIBLE);
-								textview42.setText("Please Update YouTube Miracle !!");
-								textview21.setText("Update YouTube Miracle");
-								textview22.setText("Install Vanced MicroG");
-							}
-							if (!MgVersion.equals("null")) {
-								if (!MgVersion.equals(response_data_map.get("MG_Latest_Version").toString())) {
-									linear67.setVisibility(View.VISIBLE);
-									linear76.setVisibility(View.VISIBLE);
-									textview42.setText("Please Update Vanced MicroG !!");
-									textview22.setText("Update Vanced MicroG");
-									textview21.setText("Install YouTube Miracle");
-								}
-							}
-						}
-					}catch(Exception e){
-						SketchwareUtil.showMessage(getApplicationContext(), "Unable to load data from server !!");
-					}
-				}
+				_ResponseHandler();
 			}
 			
 			@Override
@@ -680,7 +635,10 @@ public class ManagerActivity extends AppCompatActivity {
 		linear31.setVisibility(View.GONE);
 		linear78.setVisibility(View.INVISIBLE);
 		linear80.setVisibility(View.INVISIBLE);
+		linear94.setVisibility(View.INVISIBLE);
+		linear93.setVisibility(View.GONE);
 		_Apk_init();
+		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
 		if (usr.getString("UserId", "").equals("")) {
 			usr.edit().putString("UserId", "Unknown User").commit();
 			textview33.setText(usr.getString("UserId", ""));
@@ -690,7 +648,6 @@ public class ManagerActivity extends AppCompatActivity {
 			edittext1.setText(usr.getString("UserId", ""));
 			textview33.setText(usr.getString("UserId", ""));
 		}
-		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
 		Calendar c = Calendar.getInstance();
 		int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 		
@@ -705,226 +662,7 @@ public class ManagerActivity extends AppCompatActivity {
 		}
 		UserName = usr.getString("UserId", "");
 		TastyToast.makeText(getApplicationContext(), "Welcome "+UserName, TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-		FileUtil.writeFile("t", "t");
-		if (!(isDownloading == 1)) {
-			PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
-				.setDatabaseEnabled(true)
-				.build();
-			PRDownloader.initialize(ManagerActivity.this, config);
-			linear24.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-						if (Status.RUNNING == PRDownloader.getStatus(downloadId)) {
-								PRDownloader.pause(downloadId);
-								return;
-						}
-						progressbar2.getIndeterminateDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
-						if (Status.PAUSED == PRDownloader.getStatus(downloadId)) {
-								PRDownloader.resume(downloadId);
-								return;
-						}
-						downloadId = PRDownloader.download(DownloadYTMCustIcon
-					, "/storage/emulated/0/TeamMiracle", "YouTube_Miracle_".concat(response_data_map.get("YTM_Latest_Version").toString()).concat(".apk"))
-							.build()
-							.setOnStartOrResumeListener(new OnStartOrResumeListener() {
-									@Override
-									public void onStartOrResume() {
-									}
-						})
-						.setOnPauseListener(new OnPauseListener() {
-								@Override
-								public void onPause() {
-								}
-						})
-						.setOnCancelListener(new OnCancelListener() {
-								@Override
-								public void onCancel() {
-								}
-						})
-						.setOnProgressListener(new OnProgressListener() {
-								@Override
-								public void onProgress(Progress progress) {
-							long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
-							isDownloading = 1;
-							YtmFinalSaveName = "YouTube_Miracle_".concat(response_data_map.get("YTM_Latest_Version").toString()).concat(".apk");
-							progressbar2.setProgress((int)(int) progressPercent);
-							textview31.setText(String.valueOf((long)((int) progressPercent)).concat(" ".concat("%")));
-							textview40.setText(YtmFinalSaveName);
-							linear32.setVisibility(View.VISIBLE);
-							linear26.setVisibility(View.INVISIBLE);
-							linear20.setVisibility(View.VISIBLE);
-									
-								}
-						})
-						.start(new OnDownloadListener() {
-								@Override
-								public void onDownloadComplete() {
-							isDownloading = 0;
-							linear20.setVisibility(View.GONE);
-							linear32.setVisibility(View.GONE);
-							linear31.setVisibility(View.VISIBLE);
-							linear63.setVisibility(View.VISIBLE);
-							FileUtil.writeFile("t", "t");
-							try {
-								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-														Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
-																ManagerActivity.this.getPackageName() + ".provider", new java.io.File("/storage/emulated/0/TeamMiracle/".concat(YtmFinalSaveName)));
-														Intent intent = new Intent(Intent.ACTION_VIEW);
-														intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-														intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-														intent.setDataAndType(uri, "application/vnd.android.package-archive");
-														startActivity(intent);
-									
-												} else {
-														Intent intent = new Intent(Intent.ACTION_VIEW);
-														intent.setDataAndType(Uri.fromFile( new java.io.File("/storage/emulated/0/TeamMiracle/".concat(YtmFinalSaveName))),
-																"application/vnd.android.package-archive");
-														intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-														startActivity(intent);
-												}
-								
-							} catch (Exception rr) {
-								showMessage (rr.toString());
-							}
-							TastyToast.makeText(getApplicationContext(), YtmFinalSaveName+" Downloaded Successfully And Saved To /storage/emulated/0/TeamMiracle", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-							hide_str_loc_tim = new TimerTask() {
-								@Override
-								public void run() {
-									runOnUiThread(new Runnable() {
-										@Override
-										public void run() {
-											linear31.setVisibility(View.GONE);
-											linear63.setVisibility(View.GONE);
-										}
-									});
-								}
-							};
-							_timer.schedule(hide_str_loc_tim, (int)(15000));
-							linear26.setVisibility(View.VISIBLE);
-								}
-								@Override
-								public void onError(Error error) {
-								}
-						});
-				}
-			});
-			linear62.setOnClickListener(new View.OnClickListener() {
-				@Override public void onClick(View view) {
-					PRDownloader.cancel(downloadId);
-				}
-			});
-		}
-		else {
-			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-		}
-		if (!(isDownloading == 1)) {
-			PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
-				.setDatabaseEnabled(true)
-				.build();
-			PRDownloader.initialize(ManagerActivity.this, config);
-			linear26.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-						if (Status.RUNNING == PRDownloader.getStatus(downloadId)) {
-								PRDownloader.pause(downloadId);
-								return;
-						}
-						progressbar2.getIndeterminateDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
-						if (Status.PAUSED == PRDownloader.getStatus(downloadId)) {
-								PRDownloader.resume(downloadId);
-								return;
-						}
-						downloadId = PRDownloader.download(DownloadMG
-					, "/storage/emulated/0/TeamMiracle", "MicroG.apk")
-							.build()
-							.setOnStartOrResumeListener(new OnStartOrResumeListener() {
-									@Override
-									public void onStartOrResume() {
-									}
-						})
-						.setOnPauseListener(new OnPauseListener() {
-								@Override
-								public void onPause() {
-								}
-						})
-						.setOnCancelListener(new OnCancelListener() {
-								@Override
-								public void onCancel() {
-								}
-						})
-						.setOnProgressListener(new OnProgressListener() {
-								@Override
-								public void onProgress(Progress progress) {
-							long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
-							isDownloading = 1;
-							progressbar2.setProgress((int)(int) progressPercent);
-							textview31.setText(String.valueOf((long)((int) progressPercent)).concat(" ".concat("%")));
-							textview40.setText("MicroG.apk");
-							linear32.setVisibility(View.VISIBLE);
-							linear24.setVisibility(View.INVISIBLE);
-							linear20.setVisibility(View.VISIBLE);
-									
-								}
-						})
-						.start(new OnDownloadListener() {
-								@Override
-								public void onDownloadComplete() {
-							isDownloading = 0;
-							linear32.setVisibility(View.GONE);
-							linear63.setVisibility(View.VISIBLE);
-							linear31.setVisibility(View.VISIBLE);
-							FileUtil.writeFile("t", "t");
-							try {
-								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-														Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
-																ManagerActivity.this.getPackageName() + ".provider", new java.io.File("/storage/emulated/0/TeamMiracle/".concat("MicroG.apk")));
-														Intent intent = new Intent(Intent.ACTION_VIEW);
-														intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-														intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-														intent.setDataAndType(uri, "application/vnd.android.package-archive");
-														startActivity(intent);
-									
-												} else {
-														Intent intent = new Intent(Intent.ACTION_VIEW);
-														intent.setDataAndType(Uri.fromFile( new java.io.File("/storage/emulated/0/TeamMiracle/".concat("MicroG.apk"))),
-																"application/vnd.android.package-archive");
-														intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-														startActivity(intent);
-												}
-								
-							} catch (Exception rr) {
-								showMessage (rr.toString());
-							}
-							TastyToast.makeText(getApplicationContext(), YtmFinalSaveName+" Downloaded Successfully And Saved To /storage/emulated/0/TeamMiracle", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-							hide_str_loc_tim = new TimerTask() {
-								@Override
-								public void run() {
-									runOnUiThread(new Runnable() {
-										@Override
-										public void run() {
-											linear31.setVisibility(View.GONE);
-											linear63.setVisibility(View.GONE);
-										}
-									});
-								}
-							};
-							_timer.schedule(hide_str_loc_tim, (int)(15000));
-							linear24.setVisibility(View.VISIBLE);
-							linear20.setVisibility(View.GONE);
-								}
-								@Override
-								public void onError(Error error) {
-								}
-						});
-				}
-			});
-			linear74.setOnClickListener(new View.OnClickListener() {
-				@Override public void onClick(View view) {
-					PRDownloader.cancel(downloadId);
-				}
-			});
-		}
-		else {
-			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-		}
+		_Download_Initialise();
 	}
 	
 	@Override
@@ -987,7 +725,7 @@ public class ManagerActivity extends AppCompatActivity {
 		linear32.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear49.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear63.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
-		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFA1D1FF));
+		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFA1D1FF));
 		linear66.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear82.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
@@ -2768,12 +2506,13 @@ public class ManagerActivity extends AppCompatActivity {
 		package_name = "app.rvx.android.youtube";
 		mg_package_name = "com.mgoogle.android.gms";
 		manager_package_name = "com.project.miracle.raw";
+		rvm_package_name = "app.rvx.android.apps.youtube.music";
 		
 		ApkUtils apk = new ApkUtils(ManagerActivity.this);
 		try{
 			apk.setPackageName(package_name);
 		}catch(Exception e){
-			SketchwareUtil.showMessage(getApplicationContext(), "Package Manager Error !!");
+			 
 		}
 		Sha256Ytm = apk.getSHA256();
 		VersionCodeYtm = apk.getVersionName();
@@ -2791,9 +2530,29 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		}
 		try{
+			apk.setPackageName(rvm_package_name);
+		}catch(Exception e){
+			 
+		}
+		Sha256Rvm = apk.getSHA256();
+		VersionCodeRvm = apk.getVersionName();
+		if (VersionCodeRvm.equals("null")) {
+			textview9.setText("YouTube Miracle Not Installed !!");
+		}
+		else {
+			if (Sha256Rvm.equals("301a91e1fb5ec0d3462d6f6134b9f2d9b6dfed4d998c24ee04529c3dd7553c67".toUpperCase())) {
+				textview50.setText(VersionCodeRvm);
+				linear94.setVisibility(View.VISIBLE);
+				imageview13.setImageDrawable(apk.getIcon());
+			}
+			else {
+				textview9.setText("Official Application Not Found !!");
+			}
+		}
+		try{
 			apk.setPackageName(mg_package_name);
 		}catch(Exception e){
-			SketchwareUtil.showMessage(getApplicationContext(), "Package Manager Error !!");
+			 
 		}
 		MgVersion = apk.getVersionName();
 		imageview3.setImageDrawable(apk.getIcon());
@@ -2807,7 +2566,7 @@ public class ManagerActivity extends AppCompatActivity {
 		try{
 			apk.setPackageName(manager_package_name);
 		}catch(Exception e){
-			SketchwareUtil.showMessage(getApplicationContext(), "Package Manager Error !!");
+			 
 		}
 		ManagerVersionCode = apk.getVersionCode();
 	}
@@ -2851,6 +2610,439 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		_function();
 		Window w = this.getWindow(); w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setNavigationBarColor(getColor("system_neutral2_10"));
+	}
+	
+	
+	public void _ResponseHandler() {
+		if (!response_data_map.isEmpty()) {
+			try{
+				textview8.setText(response_data_map.get("YTM_Latest_Version").toString());
+				textview12.setText(response_data_map.get("YTM_Latest_Release_Date").toString().concat(" , ".concat(response_data_map.get("YTM_Latest_Release_Time").toString())));
+				textview36.setText(response_data_map.get("YTM_Latest_CodeName").toString());
+				textview49.setText(response_data_map.get("RVM_Latest_Version").toString());
+				textview51.setText(response_data_map.get("RVM_Latest_Release_Date").toString().concat(" , ".concat(response_data_map.get("RVM_Latest_Release_Time").toString())));
+				textview52.setText(response_data_map.get("RVM_Latest_CodeName").toString());
+				textview13.setText(response_data_map.get("MG_Latest_Version").toString());
+				textview15.setText(response_data_map.get("MG_Latest_Release_Date").toString().concat(" , ".concat(response_data_map.get("MG_Latest_Release_Time").toString())));
+				update = Double.parseDouble(response_data_map.get("Manager_Latest_Version_Code").toString());
+				DownloadYTMCustIcon = response_data_map.get("YTM_Latest_Download_Link").toString();
+				DownloadMG = response_data_map.get("MG_Latest_Download_Link").toString();
+				DownloadRVM = response_data_map.get("RVM_Latest_Download_Link").toString();
+				if (update > Double.parseDouble(ManagerVersionCode)) {
+					linear55.setVisibility(View.VISIBLE);
+					imageview9.setVisibility(View.GONE);
+					MaterialAlertDialogBuilder updt = new MaterialAlertDialogBuilder(ManagerActivity.this);
+					updt.setTitle("An update is available");
+					updt.setMessage("A new version of Miracle Manager is published please update your application. 😉");
+					updt.setIcon(R.drawable.ic_arrow_update);
+					updt.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface _dialog, int _which) {
+							intent.setAction(Intent.ACTION_VIEW);
+							intent.setClass(getApplicationContext(), UpdaterActivity.class);
+							intent.putExtra("ManagerVersion", ManagerVersionCode);
+							startActivity(intent);
+						}
+					});
+					updt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface _dialog, int _which) {
+							finish();
+						}
+					});
+					updt.setCancelable(false);
+					updt.create().show();
+				}
+				if (response_data_map.get("Show_Download_Box").toString().equals("true")) {
+					linear71.setVisibility(View.VISIBLE);
+					linear73.setVisibility(View.VISIBLE);
+					linear93.setVisibility(View.VISIBLE);
+				}
+				if (response_data_map.get("Custom_Greeting_Message_Bool").toString().equals("true")) {
+					textview32.setText(response_data_map.get("Custom_Greeting_Message").toString());
+				}
+				if (!(VersionCodeYtm.equals("null") && (MgVersion.equals("null") && VersionCodeRvm.equals("null")))) {
+					if (!VersionCodeYtm.equals(response_data_map.get("YTM_Latest_Version").toString()) && !MgVersion.equals(response_data_map.get("MG_Latest_Version").toString())) {
+						linear67.setVisibility(View.VISIBLE);
+						linear76.setVisibility(View.VISIBLE);
+						textview42.setText("Please Update YouTube Miracle & Vanced MicroG !!");
+						textview21.setText("Update YouTube Miracle");
+						textview22.setText("Update Vanced MicroG");
+					}
+				}
+				if (!VersionCodeYtm.equals("null")) {
+					if (!VersionCodeYtm.equals(response_data_map.get("YTM_Latest_Version").toString())) {
+						linear67.setVisibility(View.VISIBLE);
+						linear76.setVisibility(View.VISIBLE);
+						textview42.setText("Please Update YouTube Miracle !!");
+						textview21.setText("Update YouTube Miracle");
+						textview22.setText("Install Vanced MicroG");
+					}
+					if (!MgVersion.equals("null")) {
+						if (!MgVersion.equals(response_data_map.get("MG_Latest_Version").toString())) {
+							linear67.setVisibility(View.VISIBLE);
+							linear76.setVisibility(View.VISIBLE);
+							textview42.setText("Please Update Vanced MicroG !!");
+							textview22.setText("Update Vanced MicroG");
+							textview21.setText("Install YouTube Miracle");
+						}
+					}
+				}
+			}catch(Exception e){
+				SketchwareUtil.showMessage(getApplicationContext(), "Unable to load data from server !!");
+			}
+		}
+	}
+	
+	
+	public void _Download_Initialise() {
+		FileUtil.writeFile("t", "t");
+		if (!(isDownloading == 1)) {
+			PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+				.setDatabaseEnabled(true)
+				.build();
+			PRDownloader.initialize(ManagerActivity.this, config);
+			linear24.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+						if (Status.RUNNING == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.pause(downloadId);
+								return;
+						}
+						progressbar2.getIndeterminateDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
+						if (Status.PAUSED == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.resume(downloadId);
+								return;
+						}
+						downloadId = PRDownloader.download(DownloadYTMCustIcon
+					, "/storage/emulated/0/TeamMiracle", "YouTube_Miracle_".concat(response_data_map.get("YTM_Latest_Version").toString()).concat(".apk"))
+							.build()
+							.setOnStartOrResumeListener(new OnStartOrResumeListener() {
+									@Override
+									public void onStartOrResume() {
+									}
+						})
+						.setOnPauseListener(new OnPauseListener() {
+								@Override
+								public void onPause() {
+								}
+						})
+						.setOnCancelListener(new OnCancelListener() {
+								@Override
+								public void onCancel() {
+								}
+						})
+						.setOnProgressListener(new OnProgressListener() {
+								@Override
+								public void onProgress(Progress progress) {
+							long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+							isDownloading = 1;
+							YtmFinalSaveName = "YouTube_Miracle_".concat(response_data_map.get("YTM_Latest_Version").toString()).concat(".apk");
+							progressbar2.setProgress((int)(int) progressPercent);
+							textview31.setText(String.valueOf((long)((int) progressPercent)).concat(" ".concat("%")));
+							textview40.setText(YtmFinalSaveName);
+							linear32.setVisibility(View.VISIBLE);
+							linear20.setVisibility(View.VISIBLE);
+							linear26.setVisibility(View.GONE);
+							linear96.setVisibility(View.GONE);
+							linear24.setVisibility(View.GONE);
+									
+								}
+						})
+						.start(new OnDownloadListener() {
+								@Override
+								public void onDownloadComplete() {
+							isDownloading = 0;
+							linear20.setVisibility(View.GONE);
+							linear32.setVisibility(View.GONE);
+							linear31.setVisibility(View.VISIBLE);
+							linear63.setVisibility(View.VISIBLE);
+							FileUtil.writeFile("t", "t");
+							try {
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+														Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
+																ManagerActivity.this.getPackageName() + ".provider", new java.io.File("/storage/emulated/0/TeamMiracle/".concat(YtmFinalSaveName)));
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+														intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														intent.setDataAndType(uri, "application/vnd.android.package-archive");
+														startActivity(intent);
+									
+												} else {
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.setDataAndType(Uri.fromFile( new java.io.File("/storage/emulated/0/TeamMiracle/".concat(YtmFinalSaveName))),
+																"application/vnd.android.package-archive");
+														intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														startActivity(intent);
+												}
+								
+							} catch (Exception rr) {
+								showMessage (rr.toString());
+							}
+							TastyToast.makeText(getApplicationContext(), YtmFinalSaveName+" Downloaded Successfully And Saved To /storage/emulated/0/TeamMiracle", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+							hide_str_loc_tim = new TimerTask() {
+								@Override
+								public void run() {
+									runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											linear31.setVisibility(View.GONE);
+											linear63.setVisibility(View.GONE);
+										}
+									});
+								}
+							};
+							_timer.schedule(hide_str_loc_tim, (int)(15000));
+							linear26.setVisibility(View.VISIBLE);
+							linear96.setVisibility(View.VISIBLE);
+							linear24.setVisibility(View.VISIBLE);
+							linear26.setVisibility(View.VISIBLE);
+								}
+								@Override
+								public void onError(Error error) {
+								}
+						});
+				}
+			});
+			linear62.setOnClickListener(new View.OnClickListener() {
+				@Override public void onClick(View view) {
+					PRDownloader.cancel(downloadId);
+				}
+			});
+		}
+		else {
+			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+		}
+		if (!(isDownloading == 1)) {
+			PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+				.setDatabaseEnabled(true)
+				.build();
+			PRDownloader.initialize(ManagerActivity.this, config);
+			linear26.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+						if (Status.RUNNING == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.pause(downloadId);
+								return;
+						}
+						progressbar2.getIndeterminateDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
+						if (Status.PAUSED == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.resume(downloadId);
+								return;
+						}
+						downloadId = PRDownloader.download(DownloadMG
+					, "/storage/emulated/0/TeamMiracle", "MicroG.apk")
+							.build()
+							.setOnStartOrResumeListener(new OnStartOrResumeListener() {
+									@Override
+									public void onStartOrResume() {
+									}
+						})
+						.setOnPauseListener(new OnPauseListener() {
+								@Override
+								public void onPause() {
+								}
+						})
+						.setOnCancelListener(new OnCancelListener() {
+								@Override
+								public void onCancel() {
+								}
+						})
+						.setOnProgressListener(new OnProgressListener() {
+								@Override
+								public void onProgress(Progress progress) {
+							long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+							isDownloading = 1;
+							progressbar2.setProgress((int)(int) progressPercent);
+							textview31.setText(String.valueOf((long)((int) progressPercent)).concat(" ".concat("%")));
+							textview40.setText("MicroG.apk");
+							linear32.setVisibility(View.VISIBLE);
+							linear24.setVisibility(View.INVISIBLE);
+							linear20.setVisibility(View.VISIBLE);
+							linear26.setVisibility(View.GONE);
+							linear96.setVisibility(View.GONE);
+							linear24.setVisibility(View.GONE);
+									
+								}
+						})
+						.start(new OnDownloadListener() {
+								@Override
+								public void onDownloadComplete() {
+							isDownloading = 0;
+							linear32.setVisibility(View.GONE);
+							linear63.setVisibility(View.VISIBLE);
+							linear31.setVisibility(View.VISIBLE);
+							FileUtil.writeFile("t", "t");
+							try {
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+														Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
+																ManagerActivity.this.getPackageName() + ".provider", new java.io.File("/storage/emulated/0/TeamMiracle/".concat("MicroG.apk")));
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+														intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														intent.setDataAndType(uri, "application/vnd.android.package-archive");
+														startActivity(intent);
+									
+												} else {
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.setDataAndType(Uri.fromFile( new java.io.File("/storage/emulated/0/TeamMiracle/".concat("MicroG.apk"))),
+																"application/vnd.android.package-archive");
+														intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														startActivity(intent);
+												}
+								
+							} catch (Exception rr) {
+								showMessage (rr.toString());
+							}
+							TastyToast.makeText(getApplicationContext(), "MicroG Downloaded Successfully And Saved To /storage/emulated/0/TeamMiracle", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+							hide_str_loc_tim = new TimerTask() {
+								@Override
+								public void run() {
+									runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											linear31.setVisibility(View.GONE);
+											linear63.setVisibility(View.GONE);
+										}
+									});
+								}
+							};
+							_timer.schedule(hide_str_loc_tim, (int)(15000));
+							linear24.setVisibility(View.VISIBLE);
+							linear20.setVisibility(View.GONE);
+							linear26.setVisibility(View.VISIBLE);
+							linear96.setVisibility(View.VISIBLE);
+							linear24.setVisibility(View.VISIBLE);
+								}
+								@Override
+								public void onError(Error error) {
+								}
+						});
+				}
+			});
+			linear74.setOnClickListener(new View.OnClickListener() {
+				@Override public void onClick(View view) {
+					PRDownloader.cancel(downloadId);
+				}
+			});
+		}
+		else {
+			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+		}
+		if (!(isDownloading == 1)) {
+			PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+				.setDatabaseEnabled(true)
+				.build();
+			PRDownloader.initialize(ManagerActivity.this, config);
+			linear96.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+						if (Status.RUNNING == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.pause(downloadId);
+								return;
+						}
+						progressbar2.getIndeterminateDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
+						if (Status.PAUSED == PRDownloader.getStatus(downloadId)) {
+								PRDownloader.resume(downloadId);
+								return;
+						}
+						downloadId = PRDownloader.download(DownloadRVM
+					, "/storage/emulated/0/TeamMiracle", "ReVanced_Music_".concat(response_data_map.get("RVM_Latest_Version").toString()).concat(".apk"))
+							.build()
+							.setOnStartOrResumeListener(new OnStartOrResumeListener() {
+									@Override
+									public void onStartOrResume() {
+									}
+						})
+						.setOnPauseListener(new OnPauseListener() {
+								@Override
+								public void onPause() {
+								}
+						})
+						.setOnCancelListener(new OnCancelListener() {
+								@Override
+								public void onCancel() {
+								}
+						})
+						.setOnProgressListener(new OnProgressListener() {
+								@Override
+								public void onProgress(Progress progress) {
+							long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+							isDownloading = 1;
+							RVM_Final_Save_Name = "ReVanced_Music_".concat(response_data_map.get("RVM_Latest_Version").toString()).concat(".apk");
+							progressbar2.setProgress((int)(int) progressPercent);
+							textview31.setText(String.valueOf((long)((int) progressPercent)).concat(" ".concat("%")));
+							textview40.setText(RVM_Final_Save_Name);
+							linear32.setVisibility(View.VISIBLE);
+							linear24.setVisibility(View.INVISIBLE);
+							linear20.setVisibility(View.VISIBLE);
+							linear26.setVisibility(View.GONE);
+							linear96.setVisibility(View.GONE);
+							linear24.setVisibility(View.GONE);
+									
+								}
+						})
+						.start(new OnDownloadListener() {
+								@Override
+								public void onDownloadComplete() {
+							isDownloading = 0;
+							linear32.setVisibility(View.GONE);
+							linear63.setVisibility(View.VISIBLE);
+							linear31.setVisibility(View.VISIBLE);
+							FileUtil.writeFile("t", "t");
+							try {
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+														Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
+																ManagerActivity.this.getPackageName() + ".provider", new java.io.File("/storage/emulated/0/TeamMiracle/".concat(RVM_Final_Save_Name)));
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+														intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														intent.setDataAndType(uri, "application/vnd.android.package-archive");
+														startActivity(intent);
+									
+												} else {
+														Intent intent = new Intent(Intent.ACTION_VIEW);
+														intent.setDataAndType(Uri.fromFile( new java.io.File("/storage/emulated/0/TeamMiracle/".concat(RVM_Final_Save_Name))),
+																"application/vnd.android.package-archive");
+														intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+														startActivity(intent);
+												}
+								
+							} catch (Exception rr) {
+								showMessage (rr.toString());
+							}
+							TastyToast.makeText(getApplicationContext(), RVM_Final_Save_Name + " Downloaded Successfully And Saved To /storage/emulated/0/TeamMiracle", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+							hide_str_loc_tim = new TimerTask() {
+								@Override
+								public void run() {
+									runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											linear31.setVisibility(View.GONE);
+											linear63.setVisibility(View.GONE);
+										}
+									});
+								}
+							};
+							_timer.schedule(hide_str_loc_tim, (int)(15000));
+							linear24.setVisibility(View.VISIBLE);
+							linear20.setVisibility(View.GONE);
+							linear26.setVisibility(View.VISIBLE);
+							linear96.setVisibility(View.VISIBLE);
+							linear24.setVisibility(View.VISIBLE);
+								}
+								@Override
+								public void onError(Error error) {
+								}
+						});
+				}
+			});
+			linear75.setOnClickListener(new View.OnClickListener() {
+				@Override public void onClick(View view) {
+					PRDownloader.cancel(downloadId);
+				}
+			});
+		}
+		else {
+			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+		}
 	}
 	
 	
