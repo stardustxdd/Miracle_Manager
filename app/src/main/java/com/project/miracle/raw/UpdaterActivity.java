@@ -2166,13 +2166,13 @@ public class UpdaterActivity extends AppCompatActivity {
 			linear21.setVisibility(View.VISIBLE);
 			imageview3.setImageResource(R.drawable.ic_secure);
 			textview13.setTextColor(0xFF558B2F);
-			textview13.setText("You Are Using Office Application !!");
+			textview13.setText("You Are Using Official Application !!");
 		}
 		else {
 			linear21.setVisibility(View.VISIBLE);
 			imageview3.setImageResource(R.drawable.ic_inscure);
 			textview13.setTextColor(0xFFC62828);
-			textview13.setText("You Are Not Using Office Application !!");
+			textview13.setText("You Are Not Using Official Application !!");
 		}
 	}
 	

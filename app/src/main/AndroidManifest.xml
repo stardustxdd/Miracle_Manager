@@ -11,6 +11,8 @@
 	<uses-permission android:name="android.permission.INSTALL_PACKAGES" />
 	<uses-permission android:name="android.permission.READ_INSTALL_SESSIONS" />
 	<uses-permission android:name="android.permission.BIND_EXTERNAL_STORAGE_SERVICE" />
+	<uses-permission android:name="com.project.miracle.raw.permission.INSTALL_SHORTCUT" />
+	<uses-permission android:name="com.project.miracle.raw.permission.UNINSTALL_SHORTCUT" />
 	<application
 		android:allowBackup="true"
 		android:icon="@drawable/app_icon"
@@ -68,5 +70,6 @@
 				android:name="android.support.FILE_PROVIDER_PATHS"
 				android:resource="@xml/provider" />
 		</provider>
+        
 	</application>
 </manifest>

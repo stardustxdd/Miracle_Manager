@@ -1,45 +1,30 @@
 {
-
-  "Manager_Latest_Version_Code":"23 ",
-
-  "Manager_Latest_Version":"2.0.5",
-
-  "Manager_Latest_Version_Release_Time":"09:22 PM",
-
-  "Manager_Latest_Version_Release_Date":"4 March 2023",
-
-  "Manager_Latest_Download_Link":"https://dl.dropboxusercontent.com/s/lzkx99gv4hazeh7/Miracle_Project_2.0.5_Beta_sign.apk",
-
+  "Manager_Latest_Version_Code":"25",
+  "Manager_Latest_Version":"2.0.7",
+  "Manager_Latest_Version_Release_Time":"01:51 PM",
+  "Manager_Latest_Version_Release_Date":"6 March 2023",
+  "Manager_Latest_Download_Link":"https://dl.dropboxusercontent.com/s/sjghenhktcnnley/Miracle_Project_2.0.6_Beta_sign.apk",
   
-
   "YTM_Latest_Version":"18.08.39",
-
   "YTM_Latest_CodeName":"Sulphur",
-
   "YTM_Latest_Release_Time":"12:10 PM",
-
   "YTM_Latest_Release_Date":"4 March 2023",
-
   "YTM_Latest_Download_Link":"https://dl.dropboxusercontent.com/s/4m71cera8bo20u8/YouTube-Miracle_Stable_v18.08.39_Sulphur_Custom_Icon_sign.apk",
-
   
-
+  "RVM_Latest_Version":"5.47.51",
+  "RVM_Latest_CodeName":"Benzene",
+  "RVM_Latest_Release_Time":"03:09 AM",
+  "RVM_Latest_Release_Date":"8 March 2023",
+  "RVM_Latest_Download_Link":"https://dl.dropboxusercontent.com/s/pj9t5buuic6mhwe/ReVanced_Music_Stable_v5.41.51_Benzene_sign.apk",
+  
   "MG_Latest_Version":"0.2.24.220220",
-
   "MG_Latest_Release_Time":"Unknown",
-
   "MG_Latest_Release_Date":"10 March 2022",
-
   "MG_Latest_Download_Link":"https://dl.dropboxusercontent.com/s/ppztvmrwv4hew02/microg.apk",
-
   
-
   "Show_Download_Box":"true",
-
   
-
   "Custom_Greeting_Message_Bool":"false",
-
   "Custom_Greeting_Message":"Happy Holi,"
 
 }

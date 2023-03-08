@@ -85,6 +85,7 @@ public class ManagerActivity extends AppCompatActivity {
 	private String DownloadRVM = "";
 	private String RVM_Final_Save_Name = "";
 	private String rvm_packageName = "";
+	private boolean isVisible = false;
 	
 	private ScrollView vscroll1;
 	private LinearLayout linear1;
@@ -101,6 +102,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear63;
 	private LinearLayout linear67;
 	private LinearLayout linear76;
+	private LinearLayout linear99;
+	private LinearLayout linear100;
 	private LinearLayout linear60;
 	private LinearLayout linear64;
 	private ImageView imageview7;
@@ -111,13 +114,10 @@ public class ManagerActivity extends AppCompatActivity {
 	private ImageView imageview8;
 	private TextView textview38;
 	private LinearLayout linear62;
-	private LinearLayout linear66;
-	private LinearLayout linear65;
 	private LinearLayout linear74;
 	private LinearLayout linear75;
 	private LinearLayout linear97;
 	private LinearLayout linear98;
-	private ProgressBar progressbar3;
 	private TextView textview32;
 	private TextView textview33;
 	private LinearLayout linear51;
@@ -222,6 +222,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private TextView textview41;
 	private ImageView imageview10;
 	private TextView textview42;
+	private ImageView imageview15;
+	private TextView textview54;
 	
 	private RequestNetwork HitRequest;
 	private RequestNetwork.RequestListener _HitRequest_request_listener;
@@ -276,6 +278,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear63 = findViewById(R.id.linear63);
 		linear67 = findViewById(R.id.linear67);
 		linear76 = findViewById(R.id.linear76);
+		linear99 = findViewById(R.id.linear99);
+		linear100 = findViewById(R.id.linear100);
 		linear60 = findViewById(R.id.linear60);
 		linear64 = findViewById(R.id.linear64);
 		imageview7 = findViewById(R.id.imageview7);
@@ -286,13 +290,10 @@ public class ManagerActivity extends AppCompatActivity {
 		imageview8 = findViewById(R.id.imageview8);
 		textview38 = findViewById(R.id.textview38);
 		linear62 = findViewById(R.id.linear62);
-		linear66 = findViewById(R.id.linear66);
-		linear65 = findViewById(R.id.linear65);
 		linear74 = findViewById(R.id.linear74);
 		linear75 = findViewById(R.id.linear75);
 		linear97 = findViewById(R.id.linear97);
 		linear98 = findViewById(R.id.linear98);
-		progressbar3 = findViewById(R.id.progressbar3);
 		textview32 = findViewById(R.id.textview32);
 		textview33 = findViewById(R.id.textview33);
 		linear51 = findViewById(R.id.linear51);
@@ -397,6 +398,8 @@ public class ManagerActivity extends AppCompatActivity {
 		textview41 = findViewById(R.id.textview41);
 		imageview10 = findViewById(R.id.imageview10);
 		textview42 = findViewById(R.id.textview42);
+		imageview15 = findViewById(R.id.imageview15);
+		textview54 = findViewById(R.id.textview54);
 		HitRequest = new RequestNetwork(this);
 		f = new AlertDialog.Builder(this);
 		updt = new AlertDialog.Builder(this);
@@ -497,11 +500,11 @@ public class ManagerActivity extends AppCompatActivity {
 		linear94.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				rvm_packageName = "app.rvx.android.apps.youtube.music";
+				packageName = "app.rvx.android.apps.youtube.music";
 				try {
-					    Intent rvm = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-					    microg.setData(Uri.parse("package:" + rvm_packageName));
-					    startActivity(rvm);
+					    Intent miracle = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    miracle.setData(Uri.parse("package:" + packageName));
+					    startActivity(miracle);
 					
 				} catch ( ActivityNotFoundException e ) {
 					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
@@ -571,9 +574,7 @@ public class ManagerActivity extends AppCompatActivity {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
-				progressbar3.setVisibility(View.GONE);
-				linear66.setVisibility(View.GONE);
-				linear62.setVisibility(View.GONE);
+				_telegramLoaderDialog(false);
 				try{
 					response_data_map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
 				} catch (Exception e) {
@@ -586,9 +587,7 @@ public class ManagerActivity extends AppCompatActivity {
 			public void onErrorResponse(String _param1, String _param2) {
 				final String _tag = _param1;
 				final String _message = _param2;
-				progressbar3.setVisibility(View.GONE);
-				linear66.setVisibility(View.GONE);
-				linear62.setVisibility(View.GONE);
+				_telegramLoaderDialog(false);
 				if (SketchwareUtil.isConnected(getApplicationContext())) {
 					TastyToast.makeText(getApplicationContext(), "Something Went Wrong", TastyToast.LENGTH_LONG, TastyToast.ERROR);
 				}
@@ -618,7 +617,7 @@ public class ManagerActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		progressbar3.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
+		_telegramLoaderDialog(true);
 		_status_bar_color("#a1d1ff", "#a1d1ff");
 		set_theme = 1;
 		_light_theme();
@@ -637,6 +636,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear80.setVisibility(View.INVISIBLE);
 		linear94.setVisibility(View.INVISIBLE);
 		linear93.setVisibility(View.GONE);
+		linear99.setVisibility(View.GONE);
+		linear100.setVisibility(View.GONE);
 		_Apk_init();
 		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
 		if (usr.getString("UserId", "").equals("")) {
@@ -726,9 +727,9 @@ public class ManagerActivity extends AppCompatActivity {
 		linear49.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear63.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFA1D1FF));
-		linear66.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear82.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		linear100.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		_RippleEffect(linear24, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear26, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear40, 50, 00, "#0A58CA", true);
@@ -2583,7 +2584,6 @@ public class ManagerActivity extends AppCompatActivity {
 		linear63.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
 		linear32.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
 		edittext1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
-		linear66.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
 		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, getColor("system_accent1_50")));
 		linear24.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
 		linear52.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, getColor("system_accent1_700")));
@@ -2661,7 +2661,7 @@ public class ManagerActivity extends AppCompatActivity {
 				if (response_data_map.get("Custom_Greeting_Message_Bool").toString().equals("true")) {
 					textview32.setText(response_data_map.get("Custom_Greeting_Message").toString());
 				}
-				if (!(VersionCodeYtm.equals("null") && (MgVersion.equals("null") && VersionCodeRvm.equals("null")))) {
+				if (!(VersionCodeYtm.equals("null") && MgVersion.equals("null"))) {
 					if (!VersionCodeYtm.equals(response_data_map.get("YTM_Latest_Version").toString()) && !MgVersion.equals(response_data_map.get("MG_Latest_Version").toString())) {
 						linear67.setVisibility(View.VISIBLE);
 						linear76.setVisibility(View.VISIBLE);
@@ -2686,6 +2686,13 @@ public class ManagerActivity extends AppCompatActivity {
 							textview22.setText("Update Vanced MicroG");
 							textview21.setText("Install YouTube Miracle");
 						}
+					}
+				}
+				if (!VersionCodeRvm.equals("null")) {
+					if (!VersionCodeRvm.equals(response_data_map.get("RVM_Latest_Version").toString())) {
+						linear99.setVisibility(View.VISIBLE);
+						linear100.setVisibility(View.VISIBLE);
+						textview54.setText("Please Update RVM Music !!");
 					}
 				}
 			}catch(Exception e){
@@ -3043,6 +3050,59 @@ public class ManagerActivity extends AppCompatActivity {
 		else {
 			TastyToast.makeText(getApplicationContext(), "A another file is already downloading. Please download new file after finish the downloa", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 		}
+	}
+	
+	
+	public void _rippleRoundStroke(final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
+		android.graphics.drawable.GradientDrawable GG = new android.graphics.drawable.GradientDrawable();
+		GG.setColor(Color.parseColor(_focus));
+		GG.setCornerRadius((float)_round);
+		GG.setStroke((int) _stroke,
+		Color.parseColor("#" + _strokeclr.replace("#", "")));
+		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
+		_view.setBackground(RE);
+	}
+	
+	
+	public void _telegramLoaderDialog(final boolean _visibility) {
+		if (_visibility) {
+			isVisible = true;
+			if (coreprog == null){
+				coreprog = new ProgressDialog(this);
+				coreprog.setCancelable(false);
+				coreprog.setCanceledOnTouchOutside(false);
+				
+				coreprog.requestWindowFeature(Window.FEATURE_NO_TITLE);  coreprog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+				
+			}
+			coreprog.show();
+			coreprog.setContentView(R.layout.loading);
+			
+			
+			LinearLayout linear2 = (LinearLayout)coreprog.findViewById(R.id.linear2);
+			
+			LinearLayout background = (LinearLayout)coreprog.findViewById(R.id.background);
+			
+			LinearLayout layout_progress = (LinearLayout)coreprog.findViewById(R.id.layout_progress);
+			
+			android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable(); 
+			gd.setColor(Color.parseColor("#E0E0E0")); /* color */
+			gd.setCornerRadius(40); /* radius */
+			gd.setStroke(0, Color.WHITE); /* stroke heigth and color */
+			linear2.setBackground(gd);
+			
+			RadialProgressView progress = new RadialProgressView(this);
+			layout_progress.addView(progress);
+		}
+		else {
+			isVisible = false;
+			if (coreprog != null){
+				coreprog.dismiss();
+			}
+		}
+	}
+	private ProgressDialog coreprog;
+	{
 	}
 	
 	
