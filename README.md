@@ -13,5 +13,3 @@
 > Current Api 👇<br>
 > [https://dl.dropboxusercontent.com/s/lfq51795uhlg5dq/manager.json](https://dl.dropboxusercontent.com/s/lfq51795uhlg5dq/manager.json)
 <br>
-# Update Source
-<noscript><a href="https://liberapay.com/DudeCool26/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
