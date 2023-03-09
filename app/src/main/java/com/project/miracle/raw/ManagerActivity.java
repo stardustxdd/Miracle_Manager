@@ -86,6 +86,10 @@ public class ManagerActivity extends AppCompatActivity {
 	private String RVM_Final_Save_Name = "";
 	private String rvm_packageName = "";
 	private boolean isVisible = false;
+	private double YTM_Drop_Vis = 0;
+	private double RVM_Drop_Vs = 0;
+	private double Mg_Drop_Vis = 0;
+	private double Dn_Box_Vis = 0;
 	
 	private ScrollView vscroll1;
 	private LinearLayout linear1;
@@ -124,8 +128,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear51;
 	private LinearLayout linear102;
 	private LinearLayout linear103;
-	private TextView textview33;
 	private TextView textview32;
+	private TextView textview33;
 	private LinearLayout linear104;
 	private LinearLayout linear106;
 	private TextView textview55;
@@ -136,11 +140,13 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear5;
 	private LinearLayout linear9;
 	private LinearLayout linear71;
-	private LinearLayout linear11;
-	private LinearLayout linear12;
 	private ImageView imageview2;
+	private LinearLayout linear12;
+	private LinearLayout linear109;
 	private TextView textview1;
 	private TextView textview2;
+	private LinearLayout linear111;
+	private ImageView imageview17;
 	private LinearLayout linear15;
 	private LinearLayout linear16;
 	private TextView textview7;
@@ -168,8 +174,11 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear92;
 	private ImageView imageview13;
 	private LinearLayout linear85;
+	private LinearLayout linear110;
 	private TextView textview43;
 	private TextView textview44;
+	private LinearLayout linear113;
+	private ImageView imageview18;
 	private LinearLayout linear86;
 	private LinearLayout linear88;
 	private TextView textview45;
@@ -188,11 +197,13 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear8;
 	private LinearLayout linear10;
 	private LinearLayout linear73;
-	private LinearLayout linear13;
-	private LinearLayout linear14;
 	private ImageView imageview3;
+	private LinearLayout linear14;
+	private LinearLayout linear112;
 	private TextView textview3;
 	private TextView textview4;
+	private LinearLayout linear115;
+	private ImageView imageview19;
 	private LinearLayout linear17;
 	private LinearLayout linear18;
 	private TextView textview19;
@@ -311,8 +322,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear51 = findViewById(R.id.linear51);
 		linear102 = findViewById(R.id.linear102);
 		linear103 = findViewById(R.id.linear103);
-		textview33 = findViewById(R.id.textview33);
 		textview32 = findViewById(R.id.textview32);
+		textview33 = findViewById(R.id.textview33);
 		linear104 = findViewById(R.id.linear104);
 		linear106 = findViewById(R.id.linear106);
 		textview55 = findViewById(R.id.textview55);
@@ -323,11 +334,13 @@ public class ManagerActivity extends AppCompatActivity {
 		linear5 = findViewById(R.id.linear5);
 		linear9 = findViewById(R.id.linear9);
 		linear71 = findViewById(R.id.linear71);
-		linear11 = findViewById(R.id.linear11);
-		linear12 = findViewById(R.id.linear12);
 		imageview2 = findViewById(R.id.imageview2);
+		linear12 = findViewById(R.id.linear12);
+		linear109 = findViewById(R.id.linear109);
 		textview1 = findViewById(R.id.textview1);
 		textview2 = findViewById(R.id.textview2);
+		linear111 = findViewById(R.id.linear111);
+		imageview17 = findViewById(R.id.imageview17);
 		linear15 = findViewById(R.id.linear15);
 		linear16 = findViewById(R.id.linear16);
 		textview7 = findViewById(R.id.textview7);
@@ -355,8 +368,11 @@ public class ManagerActivity extends AppCompatActivity {
 		linear92 = findViewById(R.id.linear92);
 		imageview13 = findViewById(R.id.imageview13);
 		linear85 = findViewById(R.id.linear85);
+		linear110 = findViewById(R.id.linear110);
 		textview43 = findViewById(R.id.textview43);
 		textview44 = findViewById(R.id.textview44);
+		linear113 = findViewById(R.id.linear113);
+		imageview18 = findViewById(R.id.imageview18);
 		linear86 = findViewById(R.id.linear86);
 		linear88 = findViewById(R.id.linear88);
 		textview45 = findViewById(R.id.textview45);
@@ -375,11 +391,13 @@ public class ManagerActivity extends AppCompatActivity {
 		linear8 = findViewById(R.id.linear8);
 		linear10 = findViewById(R.id.linear10);
 		linear73 = findViewById(R.id.linear73);
-		linear13 = findViewById(R.id.linear13);
-		linear14 = findViewById(R.id.linear14);
 		imageview3 = findViewById(R.id.imageview3);
+		linear14 = findViewById(R.id.linear14);
+		linear112 = findViewById(R.id.linear112);
 		textview3 = findViewById(R.id.textview3);
 		textview4 = findViewById(R.id.textview4);
+		linear115 = findViewById(R.id.linear115);
+		imageview19 = findViewById(R.id.imageview19);
 		linear17 = findViewById(R.id.linear17);
 		linear18 = findViewById(R.id.linear18);
 		textview19 = findViewById(R.id.textview19);
@@ -495,6 +513,46 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		});
 		
+		linear111.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (YTM_Drop_Vis == 0) {
+					YTM_Drop_Vis = 1;
+					linear9.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear71.setVisibility(View.VISIBLE);
+					}
+					imageview17.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					YTM_Drop_Vis = 0;
+					linear9.setVisibility(View.GONE);
+					linear71.setVisibility(View.GONE);
+					imageview17.setImageResource(R.drawable.ic_caret_down);
+				}
+			}
+		});
+		
+		imageview17.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (YTM_Drop_Vis == 0) {
+					YTM_Drop_Vis = 1;
+					linear9.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear71.setVisibility(View.VISIBLE);
+					}
+					imageview17.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					YTM_Drop_Vis = 0;
+					linear9.setVisibility(View.GONE);
+					linear71.setVisibility(View.GONE);
+					imageview17.setImageResource(R.drawable.ic_caret_down);
+				}
+			}
+		});
+		
 		linear78.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -525,6 +583,46 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		});
 		
+		linear113.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (RVM_Drop_Vs == 0) {
+					RVM_Drop_Vs = 1;
+					linear87.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear93.setVisibility(View.VISIBLE);
+					}
+					imageview18.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					RVM_Drop_Vs = 0;
+					linear87.setVisibility(View.GONE);
+					linear93.setVisibility(View.GONE);
+					imageview18.setImageResource(R.drawable.ic_caret_down);
+				}
+			}
+		});
+		
+		imageview18.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (RVM_Drop_Vs == 0) {
+					RVM_Drop_Vs = 1;
+					linear87.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear93.setVisibility(View.VISIBLE);
+					}
+					imageview18.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					RVM_Drop_Vs = 0;
+					linear87.setVisibility(View.GONE);
+					linear93.setVisibility(View.GONE);
+					imageview18.setImageResource(R.drawable.ic_caret_down);
+				}
+			}
+		});
+		
 		linear94.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -536,6 +634,61 @@ public class ManagerActivity extends AppCompatActivity {
 					
 				} catch ( ActivityNotFoundException e ) {
 					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
+		imageview14.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				packageName = "app.rvx.android.apps.youtube.music";
+				try {
+					    Intent miracle = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					    miracle.setData(Uri.parse("package:" + packageName));
+					    startActivity(miracle);
+					
+				} catch ( ActivityNotFoundException e ) {
+					SketchwareUtil.showMessage(getApplicationContext(), "Application Not Found On Your Device !!");
+				}
+			}
+		});
+		
+		linear115.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (Mg_Drop_Vis == 0) {
+					Mg_Drop_Vis = 1;
+					linear10.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear73.setVisibility(View.VISIBLE);
+					}
+					imageview19.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					Mg_Drop_Vis = 0;
+					linear10.setVisibility(View.GONE);
+					linear73.setVisibility(View.GONE);
+					imageview19.setImageResource(R.drawable.ic_caret_down);
+				}
+			}
+		});
+		
+		imageview19.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (Mg_Drop_Vis == 0) {
+					Mg_Drop_Vis = 1;
+					linear10.setVisibility(View.VISIBLE);
+					if (Dn_Box_Vis == 1) {
+						linear73.setVisibility(View.VISIBLE);
+					}
+					imageview19.setImageResource(R.drawable.ic_caret_up);
+				}
+				else {
+					Mg_Drop_Vis = 0;
+					linear10.setVisibility(View.GONE);
+					linear73.setVisibility(View.GONE);
+					imageview19.setImageResource(R.drawable.ic_caret_down);
 				}
 			}
 		});
@@ -628,7 +781,7 @@ public class ManagerActivity extends AppCompatActivity {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
-				_ChekInternet();
+				linear108.setVisibility(View.GONE);
 				_telegramLoaderDialog(false);
 				try{
 					response_data_map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
@@ -642,7 +795,6 @@ public class ManagerActivity extends AppCompatActivity {
 			public void onErrorResponse(String _param1, String _param2) {
 				final String _tag = _param1;
 				final String _message = _param2;
-				_ChekInternet();
 				_telegramLoaderDialog(false);
 				if (SketchwareUtil.isConnected(getApplicationContext())) {
 					TastyToast.makeText(getApplicationContext(), "Something Went Wrong", TastyToast.LENGTH_LONG, TastyToast.ERROR);
@@ -667,6 +819,7 @@ public class ManagerActivity extends AppCompatActivity {
 					});
 					f.setCancelable(false);
 					f.create().show();
+					linear108.setVisibility(View.VISIBLE);
 				}
 			}
 		};
@@ -676,26 +829,12 @@ public class ManagerActivity extends AppCompatActivity {
 		_telegramLoaderDialog(true);
 		_status_bar_color("#a1d1ff", "#a1d1ff");
 		set_theme = 1;
+		YTM_Drop_Vis = 1;
+		RVM_Drop_Vs = 0;
+		Mg_Drop_Vis = 0;
 		_light_theme();
 		api = "https://dl.dropboxusercontent.com/s/lfq51795uhlg5dq/manager.json";
-		linear20.setVisibility(View.GONE);
-		linear51.setVisibility(View.GONE);
-		linear32.setVisibility(View.GONE);
-		linear55.setVisibility(View.GONE);
-		linear71.setVisibility(View.GONE);
-		linear73.setVisibility(View.GONE);
-		linear63.setVisibility(View.GONE);
-		linear67.setVisibility(View.GONE);
-		linear76.setVisibility(View.GONE);
-		linear31.setVisibility(View.GONE);
-		linear78.setVisibility(View.INVISIBLE);
-		linear80.setVisibility(View.INVISIBLE);
-		linear94.setVisibility(View.INVISIBLE);
-		linear93.setVisibility(View.GONE);
-		linear99.setVisibility(View.GONE);
-		linear100.setVisibility(View.GONE);
-		linear107.setVisibility(View.GONE);
-		linear108.setVisibility(View.GONE);
+		_SetVisibilty();
 		_Apk_init();
 		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
 		if (usr.getString("UserId", "").equals("")) {
@@ -722,18 +861,6 @@ public class ManagerActivity extends AppCompatActivity {
 		UserName = usr.getString("UserId", "");
 		TastyToast.makeText(getApplicationContext(), "Welcome "+UserName, TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 		_Download_Initialise();
-		Internet = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						_ChekInternet();
-					}
-				});
-			}
-		};
-		_timer.scheduleAtFixedRate(Internet, (int)(1000), (int)(5000));
 	}
 	
 	@Override
@@ -813,6 +940,9 @@ public class ManagerActivity extends AppCompatActivity {
 		_RippleEffect(linear96, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear94, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear106, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear111, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear113, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear115, 50, 00, "#0A58CA", true);
 		progressbar2.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
 	}
 	
@@ -2617,7 +2747,7 @@ public class ManagerActivity extends AppCompatActivity {
 			if (Sha256Rvm.equals("301a91e1fb5ec0d3462d6f6134b9f2d9b6dfed4d998c24ee04529c3dd7553c67".toUpperCase())) {
 				textview50.setText(VersionCodeRvm);
 				linear94.setVisibility(View.VISIBLE);
-				imageview13.setImageDrawable(apk.getIcon());
+				imageview13.setImageDrawable(qapk.getIcon());
 			}
 			else {
 				textview50.setText("Official Application Not Found !!");
@@ -2727,9 +2857,10 @@ public class ManagerActivity extends AppCompatActivity {
 					updt.create().show();
 				}
 				if (response_data_map.get("Show_Download_Box").toString().equals("true")) {
-					linear71.setVisibility(View.VISIBLE);
-					linear73.setVisibility(View.VISIBLE);
-					linear93.setVisibility(View.VISIBLE);
+					if (YTM_Drop_Vis == 1) {
+						linear71.setVisibility(View.VISIBLE);
+					}
+					Dn_Box_Vis = 1;
 				}
 				if (response_data_map.get("Custom_Greeting_Message_Bool").toString().equals("true")) {
 					textview32.setText(response_data_map.get("Custom_Greeting_Message").toString());
@@ -3186,15 +3317,29 @@ public class ManagerActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _ChekInternet() {
-		if (SketchwareUtil.isConnected(getApplicationContext())) {
-			linear107.setVisibility(View.GONE);
-			linear108.setVisibility(View.GONE);
-		}
-		else {
-			linear107.setVisibility(View.VISIBLE);
-			linear108.setVisibility(View.VISIBLE);
-		}
+	public void _SetVisibilty() {
+		linear20.setVisibility(View.GONE);
+		linear51.setVisibility(View.GONE);
+		linear32.setVisibility(View.GONE);
+		linear55.setVisibility(View.GONE);
+		linear71.setVisibility(View.GONE);
+		linear73.setVisibility(View.GONE);
+		linear63.setVisibility(View.GONE);
+		linear67.setVisibility(View.GONE);
+		linear76.setVisibility(View.GONE);
+		linear31.setVisibility(View.GONE);
+		linear78.setVisibility(View.INVISIBLE);
+		linear80.setVisibility(View.INVISIBLE);
+		linear94.setVisibility(View.INVISIBLE);
+		linear93.setVisibility(View.GONE);
+		linear99.setVisibility(View.GONE);
+		linear100.setVisibility(View.GONE);
+		linear107.setVisibility(View.GONE);
+		linear108.setVisibility(View.GONE);
+		linear87.setVisibility(View.GONE);
+		linear93.setVisibility(View.GONE);
+		linear10.setVisibility(View.GONE);
+		linear73.setVisibility(View.GONE);
 	}
 	
 	
