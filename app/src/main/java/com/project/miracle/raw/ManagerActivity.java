@@ -104,6 +104,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear76;
 	private LinearLayout linear99;
 	private LinearLayout linear100;
+	private LinearLayout linear107;
+	private LinearLayout linear108;
 	private LinearLayout linear60;
 	private LinearLayout linear64;
 	private ImageView imageview7;
@@ -118,9 +120,15 @@ public class ManagerActivity extends AppCompatActivity {
 	private LinearLayout linear75;
 	private LinearLayout linear97;
 	private LinearLayout linear98;
-	private TextView textview32;
-	private TextView textview33;
+	private LinearLayout linear101;
 	private LinearLayout linear51;
+	private LinearLayout linear102;
+	private LinearLayout linear103;
+	private TextView textview33;
+	private TextView textview32;
+	private LinearLayout linear104;
+	private LinearLayout linear106;
+	private TextView textview55;
 	private LinearLayout linear53;
 	private LinearLayout linear52;
 	private EditText edittext1;
@@ -224,6 +232,8 @@ public class ManagerActivity extends AppCompatActivity {
 	private TextView textview42;
 	private ImageView imageview15;
 	private TextView textview54;
+	private ImageView imageview16;
+	private TextView textview56;
 	
 	private RequestNetwork HitRequest;
 	private RequestNetwork.RequestListener _HitRequest_request_listener;
@@ -239,6 +249,7 @@ public class ManagerActivity extends AppCompatActivity {
 	private Intent miracle = new Intent();
 	private Intent microg = new Intent();
 	private Intent rvm = new Intent();
+	private TimerTask Internet;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -280,6 +291,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear76 = findViewById(R.id.linear76);
 		linear99 = findViewById(R.id.linear99);
 		linear100 = findViewById(R.id.linear100);
+		linear107 = findViewById(R.id.linear107);
+		linear108 = findViewById(R.id.linear108);
 		linear60 = findViewById(R.id.linear60);
 		linear64 = findViewById(R.id.linear64);
 		imageview7 = findViewById(R.id.imageview7);
@@ -294,9 +307,15 @@ public class ManagerActivity extends AppCompatActivity {
 		linear75 = findViewById(R.id.linear75);
 		linear97 = findViewById(R.id.linear97);
 		linear98 = findViewById(R.id.linear98);
-		textview32 = findViewById(R.id.textview32);
-		textview33 = findViewById(R.id.textview33);
+		linear101 = findViewById(R.id.linear101);
 		linear51 = findViewById(R.id.linear51);
+		linear102 = findViewById(R.id.linear102);
+		linear103 = findViewById(R.id.linear103);
+		textview33 = findViewById(R.id.textview33);
+		textview32 = findViewById(R.id.textview32);
+		linear104 = findViewById(R.id.linear104);
+		linear106 = findViewById(R.id.linear106);
+		textview55 = findViewById(R.id.textview55);
 		linear53 = findViewById(R.id.linear53);
 		linear52 = findViewById(R.id.linear52);
 		edittext1 = findViewById(R.id.edittext1);
@@ -400,6 +419,8 @@ public class ManagerActivity extends AppCompatActivity {
 		textview42 = findViewById(R.id.textview42);
 		imageview15 = findViewById(R.id.imageview15);
 		textview54 = findViewById(R.id.textview54);
+		imageview16 = findViewById(R.id.imageview16);
+		textview56 = findViewById(R.id.textview56);
 		HitRequest = new RequestNetwork(this);
 		f = new AlertDialog.Builder(this);
 		updt = new AlertDialog.Builder(this);
@@ -454,6 +475,13 @@ public class ManagerActivity extends AppCompatActivity {
 			public void onClick(View _view) {
 				textview33.setVisibility(View.GONE);
 				linear51.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		linear106.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				_RefreshData();
 			}
 		});
 		
@@ -568,12 +596,39 @@ public class ManagerActivity extends AppCompatActivity {
 			}
 		});
 		
+		textview27.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				PRDownloader.pause(downloadId);
+			}
+		});
+		
+		textview29.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				PRDownloader.resume(downloadId);
+			}
+		});
+		
+		textview28.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				linear24.setVisibility(View.VISIBLE);
+				linear26.setVisibility(View.VISIBLE);
+				linear20.setVisibility(View.VISIBLE);
+				linear96.setVisibility(View.VISIBLE);
+				linear32.setVisibility(View.GONE);
+				PRDownloader.cancel(downloadId);
+			}
+		});
+		
 		_HitRequest_request_listener = new RequestNetwork.RequestListener() {
 			@Override
 			public void onResponse(String _param1, String _param2, HashMap<String, Object> _param3) {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
+				_ChekInternet();
 				_telegramLoaderDialog(false);
 				try{
 					response_data_map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
@@ -587,6 +642,7 @@ public class ManagerActivity extends AppCompatActivity {
 			public void onErrorResponse(String _param1, String _param2) {
 				final String _tag = _param1;
 				final String _message = _param2;
+				_ChekInternet();
 				_telegramLoaderDialog(false);
 				if (SketchwareUtil.isConnected(getApplicationContext())) {
 					TastyToast.makeText(getApplicationContext(), "Something Went Wrong", TastyToast.LENGTH_LONG, TastyToast.ERROR);
@@ -638,6 +694,8 @@ public class ManagerActivity extends AppCompatActivity {
 		linear93.setVisibility(View.GONE);
 		linear99.setVisibility(View.GONE);
 		linear100.setVisibility(View.GONE);
+		linear107.setVisibility(View.GONE);
+		linear108.setVisibility(View.GONE);
 		_Apk_init();
 		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
 		if (usr.getString("UserId", "").equals("")) {
@@ -664,6 +722,18 @@ public class ManagerActivity extends AppCompatActivity {
 		UserName = usr.getString("UserId", "");
 		TastyToast.makeText(getApplicationContext(), "Welcome "+UserName, TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 		_Download_Initialise();
+		Internet = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						_ChekInternet();
+					}
+				});
+			}
+		};
+		_timer.scheduleAtFixedRate(Internet, (int)(1000), (int)(5000));
 	}
 	
 	@Override
@@ -730,6 +800,7 @@ public class ManagerActivity extends AppCompatActivity {
 		linear76.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear82.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
 		linear100.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFFFFFFF));
+		linear108.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)25, 0xFFF44336));
 		_RippleEffect(linear24, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear26, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear40, 50, 00, "#0A58CA", true);
@@ -741,6 +812,7 @@ public class ManagerActivity extends AppCompatActivity {
 		_RippleEffect(linear80, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear96, 50, 00, "#0A58CA", true);
 		_RippleEffect(linear94, 50, 00, "#0A58CA", true);
+		_RippleEffect(linear106, 50, 00, "#0A58CA", true);
 		progressbar2.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
 	}
 	
@@ -2530,15 +2602,16 @@ public class ManagerActivity extends AppCompatActivity {
 				textview9.setText("Official Application Not Found !!");
 			}
 		}
+		ApkUtils qapk = new ApkUtils(ManagerActivity.this);
 		try{
-			apk.setPackageName(rvm_package_name);
+			qapk.setPackageName(rvm_package_name);
 		}catch(Exception e){
 			 
 		}
-		Sha256Rvm = apk.getSHA256();
-		VersionCodeRvm = apk.getVersionName();
+		Sha256Rvm = qapk.getSHA256();
+		VersionCodeRvm = qapk.getVersionName();
 		if (VersionCodeRvm.equals("null")) {
-			textview9.setText("YouTube Miracle Not Installed !!");
+			textview50.setText("Rvm Music Not Installed !!");
 		}
 		else {
 			if (Sha256Rvm.equals("301a91e1fb5ec0d3462d6f6134b9f2d9b6dfed4d998c24ee04529c3dd7553c67".toUpperCase())) {
@@ -2547,7 +2620,7 @@ public class ManagerActivity extends AppCompatActivity {
 				imageview13.setImageDrawable(apk.getIcon());
 			}
 			else {
-				textview9.setText("Official Application Not Found !!");
+				textview50.setText("Official Application Not Found !!");
 			}
 		}
 		try{
@@ -3103,6 +3176,25 @@ public class ManagerActivity extends AppCompatActivity {
 	}
 	private ProgressDialog coreprog;
 	{
+	}
+	
+	
+	public void _RefreshData() {
+		_Apk_init();
+		HitRequest.startRequestNetwork(RequestNetworkController.GET, api, "a", _HitRequest_request_listener);
+		_telegramLoaderDialog(true);
+	}
+	
+	
+	public void _ChekInternet() {
+		if (SketchwareUtil.isConnected(getApplicationContext())) {
+			linear107.setVisibility(View.GONE);
+			linear108.setVisibility(View.GONE);
+		}
+		else {
+			linear107.setVisibility(View.VISIBLE);
+			linear108.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	

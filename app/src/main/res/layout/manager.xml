@@ -126,29 +126,72 @@
 				android:padding="4dp"
 				android:background="#FFFFFF"
 				android:orientation="vertical">
-				<TextView
-					android:id="@+id/textview32"
-					android:layout_width="wrap_content"
+				<LinearLayout
+					android:id="@+id/linear101"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:paddingLeft="4dp"
-					android:paddingTop="4dp"
-					android:paddingRight="4dp"
-					android:paddingBottom="2dp"
-					android:text="TextView"
-					android:textSize="16sp"
-					android:textColor="#000000" />
-				<TextView
-					android:id="@+id/textview33"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:paddingLeft="4dp"
-					android:paddingRight="4dp"
-					android:paddingBottom="4dp"
-					android:text="Unknown User"
-					android:textSize="18sp"
-					android:textStyle="bold"
-					android:textColor="#2962FF"
-					android:singleLine="true" />
+					android:orientation="horizontal">
+					<LinearLayout
+						android:id="@+id/linear102"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<TextView
+							android:id="@+id/textview33"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="4dp"
+							android:paddingRight="4dp"
+							android:text="Unknown User"
+							android:textSize="18sp"
+							android:textStyle="bold"
+							android:textColor="#2962FF"
+							android:singleLine="true" />
+						<TextView
+							android:id="@+id/textview32"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="4dp"
+							android:paddingRight="4dp"
+							android:paddingBottom="2dp"
+							android:text="TextView"
+							android:textSize="16sp"
+							android:textColor="#000000" />
+					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/linear103"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="right"
+						android:orientation="horizontal">
+						<LinearLayout
+							android:id="@+id/linear104"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="4dp"
+							android:gravity="right"
+							android:orientation="horizontal">
+							<LinearLayout
+								android:id="@+id/linear106"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="4dp"
+								android:background="#0A58CA"
+								android:gravity="center_horizontal|center_vertical"
+								android:orientation="horizontal">
+								<TextView
+									android:id="@+id/textview55"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:padding="4dp"
+									android:text="Refresh"
+									android:textSize="12sp"
+									android:textStyle="bold"
+									android:textColor="#FFFFFF" />
+							</LinearLayout>
+						</LinearLayout>
+					</LinearLayout>
+				</LinearLayout>
 				<LinearLayout
 					android:id="@+id/linear51"
 					android:layout_width="match_parent"
@@ -1020,6 +1063,7 @@
 					android:id="@+id/imageview10"
 					android:layout_width="20dp"
 					android:layout_height="20dp"
+					android:paddingRight="4dp"
 					android:src="@drawable/ic_warn"
 					android:scaleType="fitCenter" />
 				<TextView
@@ -1050,6 +1094,7 @@
 					android:id="@+id/imageview15"
 					android:layout_width="20dp"
 					android:layout_height="20dp"
+					android:paddingRight="4dp"
 					android:src="@drawable/ic_warn"
 					android:scaleType="fitCenter" />
 				<TextView
@@ -1060,6 +1105,36 @@
 					android:text="..."
 					android:textSize="12sp"
 					android:textColor="#827717" />
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear107"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:orientation="horizontal" />
+			<LinearLayout
+				android:id="@+id/linear108"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="4dp"
+				android:background="#F44336"
+				android:gravity="center_horizontal|center_vertical"
+				android:orientation="horizontal">
+				<ImageView
+					android:id="@+id/imageview16"
+					android:layout_width="20dp"
+					android:layout_height="20dp"
+					android:paddingRight="4dp"
+					android:src="@drawable/ic_wifi_exclamation"
+					android:scaleType="fitCenter" />
+				<TextView
+					android:id="@+id/textview56"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="No Internet Connection"
+					android:textSize="12sp"
+					android:textStyle="bold"
+					android:textColor="#FFFFFF" />
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>

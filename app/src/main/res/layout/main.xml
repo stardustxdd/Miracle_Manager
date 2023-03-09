@@ -9,7 +9,6 @@
 		android:id="@+id/linear1"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:padding="10dp"
 		android:background="#0A58CA"
 		android:gravity="center_horizontal|center_vertical"
 		android:orientation="vertical">
